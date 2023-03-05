@@ -1,0 +1,849 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tribe Threads | Shop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="{% static '/images/icon2.png' %}"
+      type="image/x-icon"
+    />
+
+    <style>
+      *,
+      html {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        /* background-color: lightblue; */
+        /* font-family: "Nunito", sans-serif; */
+        /* font-family: "Playfair Display", serif; */
+        /* font-family: "Tinos", serif; */
+        /* font-family: "Tinos", serif; */
+        font-family: "Italiana", serif;
+        background: rgb(250, 250, 250);
+        font-family: "Montserrat", sans-serif;
+
+        --col1: #ffefcd;
+        --col2: #a58e74;
+        /* --col2: #8f612d; */
+        --col3: #e09132;
+        --col4: #424530;
+        background: var(--col1);
+        color: var(--col4);
+        /* background: linear-gradient(var(--col2), var(--col1)); */
+        background: var(--col1);
+        color: var(--col4);
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--col2);
+        border-radius: 10px;
+      }
+      body .navbar {
+        height: 10%;
+        width: 100%;
+        /* background-color: grey; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* box-shadow: 3px 3px 10px 10px #a58e741c; */
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        /* background: var(--col2); */
+        color: var(--col4);
+        background: var(--col1);
+        /* display: none; */
+        border-bottom: 2px solid var(--col2);
+      }
+      body .navbar .inner {
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      body .navbar .inner > * {
+        width: 33%;
+      }
+      body .navbar .sec1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        height: 100%;
+      }
+      body .navbar .sec1 .collection {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 50%;
+        font-size: 18px;
+        /* font-weight: bold; */
+      }
+      body .navbar .sec1 .collection > * {
+        text-decoration: none;
+        color: var(--col4);
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 5px 0px;
+      }
+      body .navbar .sec1 .collection > *:hover {
+        /* color: var(--col4); */
+        /* font-weight: bold; */
+        transition: all;
+        transition-duration: 0.5s;
+        border-bottom-color: var(--col4);
+      }
+      body .navbar .sec2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      body .navbar .sec2 span {
+        /* color: #f25081; */
+      }
+      body .navbar .sec3 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: right;
+        height: 100%;
+      }
+      body .navbar .sec3 .collection {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50%;
+      }
+      body .navbar > * img {
+        height: 80%;
+      }
+      body .main {
+        height: 90%;
+        width: 100%;
+        margin-top: 5%;
+
+        height: 100%;
+        width: 80%;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+
+      .main > * {
+        width: 100%;
+        height: 100%;
+        padding: 3% 0px;
+      }
+      /* body .main > .cards {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        column-gap: 60px;
+        row-gap: 50px;
+      }
+      body .main > .cards > * {
+        align-self: center;
+      }
+      body .main > .cards .card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--col4);
+      }
+      body .main > .cards > .card .itemPic {
+        width: 100%;
+        border-radius: 3px;
+        border-radius: 100%;
+        margin-bottom: 5px;
+      }
+      body .main > .cards > .card .data {
+        margin: 5px 0px;
+        width: 90%;
+      }
+      body .main > .cards > .card #itemName {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      body .main > .cards > .card #itemDesc {
+        font-size: 15px;
+      }
+      body .main > .cards > .card #itemPrice {
+        font-weight: bold;
+        font-size: 15px;
+        color: var(--col3);
+      }
+      body .main > .cards > .card input {
+        display: none;
+      }
+      body .main > .cards > .card .btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        width: 90%;
+      }
+      body .main > .cards > .card .btns > * {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 0px;
+      }
+      body .main > .cards > .card .btns button {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid #a58e7475;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 0px;
+        cursor: pointer;
+      }
+      body .main > .cards > .card .btns button:hover {
+        border-color: #a58e74;
+        transition: all;
+        transition-duration: 0.5s;
+      }
+      body .main > .cards > .card .btns button img {
+        width: 25px;
+      } */
+
+      .main > .mainCategories {
+        background: var(--col1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 110%;
+      }
+      .main > .mainCategories .heading {
+        width: 80%;
+        height: 10%;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        padding: 3% 0px;
+      }
+      .main > .mainCategories .content {
+        height: 100%;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* row-gap: 5%;
+        column-gap: 3%; */
+        row-gap: 10px;
+        column-gap: 10px;
+      }
+      .main > .mainCategories .content > * {
+        width: 100%;
+        height: 100%;
+        justify-items: center;
+        overflow: hidden;
+        /* border: 5px solid var(--col2); */
+      }
+      .main > .mainCategories .content input {
+        display: none;
+      }
+      .main > .mainCategories .content button {
+        border: none;
+        cursor: pointer;
+      }
+      .main > .mainCategories .content img {
+        /* height: 100%; */
+        width: 100%;
+        align-self: center;
+        z-index: -1;
+      }
+      .main > .mainCategories .content img:hover {
+        transform: scale(1.05);
+        transition: all;
+        transition-duration: 1s;
+      }
+
+      /*  */
+
+      .main > .superCategories {
+        background: var(--col1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        /* border: 2px solid red; */
+      }
+      .main > .superCategories .heading {
+        width: 80%;
+        height: auto;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        padding: 0% 0% 1.5% 0px;
+      }
+      .main > .superCategories .content {
+        /* height: 90%; */
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        row-gap: 10px;
+        column-gap: 10px;
+      }
+      .main > .superCategories .content > * {
+        width: 100%;
+        height: 100%;
+        justify-items: center;
+        overflow: hidden;
+        /* border: 2px solid var(--col2); */
+      }
+      .main > .superCategories .content input {
+        display: none;
+      }
+      .main > .superCategories .content button {
+        border: none;
+        cursor: pointer;
+      }
+      .main > .superCategories .content img {
+        /* height: 100%; */
+        width: 100%;
+        align-self: center;
+        z-index: -1;
+      }
+      .main > .superCategories .content img:hover {
+        transform: scale(1.05);
+        transition: all;
+        transition-duration: 1s;
+      }
+      .main > .superCategories .content .upper {
+        overflow: hidden;
+      }
+      .main > .superCategories .content .superCategoryName {
+        font-weight: bold;
+        color: var(--col1);
+        font-size: 20px;
+        text-align: center;
+        background: var(--col3);
+      }
+
+      /*  */
+
+      /*  */
+
+      .main > .brands {
+        background: var(--col1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        /* border: 2px solid red; */
+      }
+      .main > .brands .heading {
+        width: 80%;
+        height: auto;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        padding: 0% 0% 1.5% 0px;
+      }
+      .main > .brands .content {
+        /* height: 90%; */
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        row-gap: 10px;
+        column-gap: 10px;
+      }
+      .main > .brands .content > * {
+        width: 100%;
+        height: 100%;
+        justify-items: center;
+        overflow: hidden;
+        padding: 10px;
+      }
+      .main > .brands .content input {
+        display: none;
+      }
+      .main > .brands .content button {
+        border: none;
+        cursor: pointer;
+        border-radius: 100%;
+        overflow: hidden;
+        /* box-shadow: 10px 10px var(--col3); */
+        border: 6px solid var(--col1);
+        background: var(--col3);
+        /* background: linear-gradient(var(--col1), var(--col3)); */
+        padding: 5px;
+      }
+      .main > .brands .content img {
+        /* height: 100%; */
+        border-radius: 100%;
+        width: 100%;
+        align-self: center;
+        z-index: -1;
+        border: 6px solid var(--col1);
+      }
+      .main > .brands .content img:hover {
+        transform: scale(1.07);
+        transition: all;
+        transition-duration: 1s;
+        /* box-shadow: 10px 10px var(--col3); */
+      }
+      .main > .brands .content .upper {
+        overflow: hidden;
+      }
+      .main > .brands .content .superCategoryName {
+        font-weight: bold;
+        color: var(--col1);
+        font-size: 20px;
+        text-align: center;
+        /* display: none; */
+      }
+
+      /*  */
+
+      /*  */
+
+      .main > .seasons {
+        background: var(--col1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        /* border: 2px solid red; */
+        background: var(--col3);
+      }
+      .main > .seasons .heading {
+        width: 80%;
+        height: auto;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        padding: 0% 0% 1.5% 0px;
+        color: var(--col1);
+      }
+      .main > .seasons .content {
+        /* height: 90%; */
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 10px;
+        column-gap: 10px;
+      }
+      .main > .seasons .content > * {
+        width: 100%;
+        height: 100%;
+        justify-items: center;
+        overflow: hidden;
+        /* border: 2px solid var(--col2); */
+      }
+      .main > .seasons .content input {
+        display: none;
+      }
+      .main > .seasons .content button {
+        border: none;
+        cursor: pointer;
+      }
+      .main > .seasons .content img {
+        /* height: 100%; */
+        width: 100%;
+        align-self: center;
+        z-index: -1;
+      }
+      .main > .seasons .content img:hover {
+        transform: scale(1.05);
+        transition: all;
+        transition-duration: 1s;
+      }
+      .main > .seasons .content .upper {
+        overflow: hidden;
+      }
+      .main > .seasons .content .superCategoryName {
+        font-weight: bold;
+        color: var(--col1);
+        font-size: 20px;
+        text-align: center;
+        background: transparent;
+      }
+
+      /*  */
+
+      /* @media screen and (min-width: 800px) and (max-width: 1650px) {
+        body {
+          background: green;
+        }
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="inner">
+        <div class="sec1">
+          <div class="collection">
+            <a href="./home">Home</a>
+            <a href="./shop">Shop</a>
+            <a href="./categories">Categories</a>
+          </div>
+        </div>
+
+        <h1 class="sec2">Tribe Threads<span></span></h1>
+
+        <div class="sec3">
+          <!-- <a href="shop">Shop</a> -->
+          <div class="collection">
+            <a href="wishlist"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/a58e74/hearts.png"
+            /></a>
+            <a href="cart"
+              ><img
+                src="https://img.icons8.com/sf-black-filled/64/a58e74/shopping-cart.png"
+            /></a>
+            <a href="#"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/a58e74/user-male-circle.png"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <!-- <br /><br />
+      <div class="cards">
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../static/images/pexels-jonathon-burton-2560894.jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">T-Shirt</div>
+            <div id="itemDesc">
+              T-Shirts from Both Men and Women from 200+ Brands
+            </div>
+            <div id="itemPrice">Starting from ₹</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../static/images/pexels-josé-luis-photographer-2388236.jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">Tops</div>
+            <div id="itemDesc">Tops for Women</div>
+            <div id="itemPrice">Starting from ₹ 500</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../static/images/pexels-alex-dolle-2463256.jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">Shorts</div>
+            <div id="itemDesc">Asthetic Shorts for Both Men & Women</div>
+            <div id="itemPrice">Starting from ₹ 300</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../static/images/pexels-almada-studio-601316.jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">Skirts</div>
+            <div id="itemDesc">Stylish Skirts for Women</div>
+            <div id="itemPrice">Starting from ₹ 600</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../static/images/pexels-anastasiya-lobanovskaya-1035692.jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">Hoodie</div>
+            <div id="itemDesc">
+              Hoodies from 50+ Brands for Both Men & Women
+            </div>
+            <div id="itemPrice">Starting from ₹600</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../static/images/pexels-matheus-bertelli-12446372 (2).jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">Jeans</div>
+            <div id="itemDesc">
+              Better Comfirt Jeans Pant for Both Men & Women
+            </div>
+            <div id="itemPrice">Starting from ₹ 900</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../media/productImages/pexels-jansel-ferma-2315313.jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">Jacket</div>
+            <div id="itemDesc">Jacket for Men</div>
+            <div id="itemPrice">Starting from ₹ 1000</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../media/productImages/pexels-simon-robben-977796.jpg"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">Leather Jacket</div>
+            <div id="itemDesc">
+              Jack & Jones's Navy Blue Leather Jacket for Men
+            </div>
+            <div id="itemPrice">Starting from ₹</div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="mainCategories">
+        <div class="heading">Shop According To Gender</div>
+        <div class="content">
+          <form class="men" action="shop" method="post">
+            {% csrf_token %}
+            <input type="text" name="gender" value="Men" />
+            <button type="submit">
+              <img src="{% static '/images/mens1.jpg' %}" alt="" />
+            </button>
+          </form>
+          <form class="women" action="shop" method="post">
+            {% csrf_token %}
+            <input type="text" name="gender" value="Women" />
+            <button type="submit">
+              <img src="{% static '/images/womens1.jpg' %}" alt="" />
+            </button>
+          </form>
+          <form class="kids" action="shop" method="post">
+            {% csrf_token %}
+            <input type="text" name="gender" value="Kids" />
+            <button type="submit">
+              <img src="{% static '/images/kids1.jpg' %}" alt="" />
+            </button>
+          </form>
+          <form class="other" action="shop" method="post">
+            {% csrf_token %}
+            <input type="text" name="gender" value="Both" />
+            <button type="submit">
+              <img src="{% static '/images/other1.jpg' %}" alt="" />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="superCategories">
+        <div class="heading">Our Best Categories For You!</div>
+        <div class="content">
+          {% for i in superCategoriesDictList %}
+          <form class="superCategory" action="shop" method="post">
+            {% csrf_token %}
+            <div class="upper">
+              <input type="text" name="superCategory" value="{{i.name}}" />
+              <button type="submit">
+                <img src="../media/productImages/{{i.imageName}}" alt="img" />
+              </button>
+            </div>
+            <div class="lower">
+              <div class="superCategoryName">{{i.name}}</div>
+            </div>
+          </form>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="brands">
+        <div class="heading">The Brands You Need!</div>
+        <div class="content">
+          {% for i in brandsDictList %}
+          <form class="brand" action="shop" method="post">
+            {% csrf_token %}
+            <input type="text" name="brandName" value="{{i.brandName}}" />
+            <button type="submit">
+              <img
+                src="../media/productImages/{{i.brandImageName}}"
+                alt="img"
+              />
+            </button>
+            <!-- <div class="lower">
+              <div class="superCategoryName">{{i.brandName}}</div>
+            </div> -->
+          </form>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="seasons">
+        <div class="heading">Seasonal Wear</div>
+        <div class="content">
+          {% for i in seasons %}
+          <form class="brand" action="shop" method="post">
+            {% csrf_token %}
+            <div class="upper">
+              <input type="text" name="season" value="{{i}}" />
+              <button type="submit">
+                <img src="../static/images/season_images/{{i}}.jpg" alt="img" />
+              </button>
+            </div>
+            <div class="lower">
+              <div class="superCategoryName">{{i}}</div>
+            </div>
+          </form>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goToCart() {
+        document.getElementById("items_to_wishlist_cart").action = "cart";
+      }
+
+      var cart = {};
+      function setCartSize() {
+        var count = Object.keys(cart).length;
+        if (count > 0) {
+          document.getElementById("totalCartCount").innerHTML = count;
+        }
+      }
+      function addItemToCart(i) {
+        if (cart.hasOwnProperty("price_" + i)) {
+          document.getElementById("price_" + i).innerHTML =
+            document.getElementById("price_" + i).innerHTML;
+        } else {
+          cart["price_" + i] = 1;
+          document.getElementById("price_" + i).innerHTML = 1;
+        }
+        setCartSize();
+      }
+      function increaseQuantity(i) {
+        // console.log(document.getElementById("price_" + i).innerHTML);
+        document.getElementById("price_" + i).innerHTML =
+          document.getElementById("price_" + i).innerHTML - "0" + 1;
+        if (cart.hasOwnProperty("price_" + i)) {
+          cart["price_" + i] = cart["price_" + i] + 1;
+        } else {
+          cart["price_" + i] = 1;
+        }
+        console.log("Cart : ");
+        for (var i in cart) {
+          console.log(i);
+          console.log(cart[i]);
+        }
+        setCartSize();
+      }
+      function decreaseQuantity(i) {
+        if (document.getElementById("price_" + i).innerHTML - "0" == 0) {
+          document.getElementById("price_" + i).innerHTML = 0;
+        } else {
+          document.getElementById("price_" + i).innerHTML =
+            document.getElementById("price_" + i).innerHTML - "0" - 1;
+        }
+        console.log(document.getElementById("price_" + i).innerHTML);
+        setCartSize();
+      }
+    </script>
+  </body>
+</html>

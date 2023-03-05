@@ -1,0 +1,406 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tribe Threads | Cart</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="{% static '/images/icon2.png' %}"
+      type="image/x-icon"
+    />
+    <style>
+      *,
+      html {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        /* background-color: lightblue; */
+        /* font-family: "Nunito", sans-serif; */
+        /* font-family: "Playfair Display", serif; */
+        /* font-family: "Tinos", serif; */
+        /* font-family: "Tinos", serif; */
+        font-family: "Italiana", serif;
+        background: rgb(250, 250, 250);
+        font-family: "Montserrat", sans-serif;
+
+        --col1: #ffefcd;
+        --col2: #a58e74;
+        --col3: #e09132;
+        --col4: #424530;
+        background: var(--col1);
+        color: var(--col4);
+        /* background: linear-gradient(var(--col2), var(--col1)); */
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--col2);
+        border-radius: 3px;
+      }
+      body .navbar {
+        height: 10%;
+        width: 100%;
+        /* background-color: grey; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* box-shadow: 3px 3px 10px 10px #a58e741c; */
+        position: sticky;
+        top: 0px;
+        left: 0px;
+        /* background: var(--col2); */
+        color: var(--col4);
+      }
+      body .navbar .inner {
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      body .navbar .inner > * {
+        width: 33%;
+      }
+      body .navbar .sec1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        height: 100%;
+      }
+      body .navbar .sec1 .collection {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 50%;
+        font-size: 18px;
+        /* font-weight: bold; */
+      }
+      body .navbar .sec1 .collection > * {
+        text-decoration: none;
+        color: var(--col4);
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 5px 0px;
+      }
+      body .navbar .sec1 .collection > *:hover {
+        /* color: var(--col4); */
+        /* font-weight: bold; */
+        transition: all;
+        transition-duration: 0.5s;
+        border-bottom-color: var(--col4);
+      }
+      body .navbar .sec2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      body .navbar .sec2 span {
+        /* color: #f25081; */
+      }
+      body .navbar .sec3 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: right;
+        height: 100%;
+      }
+      body .navbar .sec3 .collection {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50%;
+      }
+      body .navbar > * img {
+        height: 80%;
+      }
+      body .main {
+        height: 90%;
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      body .main > .cards {
+        width: 65%;
+        height: 90%;
+        /* display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: minmax(100px, auto); */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 15px;
+        justify-items: center;
+        overflow-y: scroll;
+        /* border: 1px solid #f25081; */
+      }
+      body .main > .other {
+        width: 33%;
+        height: 90%;
+        /* border: 1px solid rgba(153, 153, 153, 0.356); */
+        /* position: fixed; */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      body .main > .other .section {
+        width: 100%;
+        height: 100%;
+        border: 1px solid var(--col2);
+        border-radius: 5px;
+        /* position: fixed; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+      body .main > .cards > * {
+        /* border: 2px solid red; */
+        align-self: center;
+        /* border: 1px solid blue; */
+      }
+      body .main > .cards .card {
+        width: 90%;
+        height: 20vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid var(--col2);
+        padding: 15px;
+        background: white;
+        background: transparent;
+        border-radius: 5px;
+      }
+      body .main > .cards > .card .itemPic {
+        height: 100%;
+      }
+      body .main > .cards > .card .data {
+        /* margin: 5px 0px; */
+        width: 90%;
+        padding: 0px 20px;
+      }
+      body .main > .cards > .card .data > * {
+        margin: 5px 0px;
+      }
+      body .main > .cards > .card #itemName {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      body .main > .cards > .card #itemDesc {
+        font-size: 16px;
+      }
+      body .main > .cards > .card #itemColor span {
+        font-weight: bold;
+      }
+      body .main > .cards > .card #itemPrice {
+        font-weight: bold;
+        font-size: 15px;
+        color: var(--col3);
+      }
+      body .main > .cards > .card .data form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      body .main > .cards > .card .data select {
+        border: none;
+        background: rgba(153, 153, 153, 0.11);
+        padding: 3px;
+      }
+      body .main > .cards > .card .data form #quantityBtn {
+        /* background: transparent;
+        border: none;
+        width: 27px;
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        cursor: pointer; */
+      }
+      body .main > .cards > .card .data form #quantityBtn img {
+        width: 100%;
+      }
+      body .main > .cards > .card input {
+        display: none;
+      }
+      body .main > .cards > .card form {
+        display: block;
+        height: 100%;
+      }
+      body .main > .other #placeorder {
+        display: block;
+        width: 100%;
+        background: var(--col2);
+        color: var(--col1);
+        text-decoration: none;
+        text-align: center;
+        padding: 10px 0px;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+      body .main > .cards > .card #removeBtn {
+        background: transparent;
+        border: none;
+        width: 27px;
+        /* border: 1px solid rgba(0, 0, 0, 0.027);
+        background: rgba(0, 0, 0, 0.027); */
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        /* padding: 2px; */
+        cursor: pointer;
+      }
+      body .main > .cards > .card #removeBtn img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="inner">
+        <div class="sec1">
+          <div class="collection">
+            <a href="./home">Home</a>
+            <a href="./shop">Shop</a>
+            <a href="./categories">Categories</a>
+          </div>
+        </div>
+
+        <h1 class="sec2">Tribe Threads<span></span></h1>
+
+        <div class="sec3">
+          <div class="collection">
+            <a href="wishlist"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/a58e74/hearts.png"
+            /></a>
+            <a href="cart"
+              ><img
+                src="https://img.icons8.com/sf-black-filled/64/a58e74/shopping-cart.png"
+            /></a>
+            <a href="#"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/a58e74/user-male-circle.png"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <br /><br /> -->
+    <div class="main">
+      <div class="cards">
+        {% for i in cart_products %}
+        <div class="card">
+          <div class="itemPic">
+            <img
+              class="itemPic"
+              src="../media/productImages/{{i.imageName}}"
+              alt=""
+            />
+          </div>
+          <div class="data">
+            <div id="itemName">{{i.name}}</div>
+            <div id="itemDesc">{{i}}</div>
+            <div id="itemColor"><span> Color </span> : {{i.color}}</div>
+            <form action="" method="post">
+              <!-- <button id="quantityBtn" type="submit">
+                <img
+                  src="https://img.icons8.com/ios-filled/50/null/minus-math.png"
+                />
+              </button>
+              <div class="quantity">1</div>
+              <button id="quantityBtn" type="submit">
+                <img
+                  src="https://img.icons8.com/ios-filled/50/1A1A1A/plus-math.png"
+                />
+              </button> -->
+
+              <select name="size" id="size">
+                <option value="none" selected disabled>Size</option>
+                <option value="32">32</option>
+                <option value="34">34</option>
+                <option value="36">36</option>
+                <option value="38">38</option>
+                <option value="40">40</option>
+              </select>
+              &nbsp; &nbsp;
+              <select name="quantity" id="quantity">
+                <option value="none" selected disabled>Quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </form>
+            <div id="itemPrice">₹ {{i.price}}</div>
+          </div>
+          <form action="" method="post">
+            {% csrf_token %}
+            <input
+              type="text"
+              name="remove"
+              id="remove"
+              value="{{i.product_id}}"
+            />
+            <button id="removeBtn" type="submit">
+              <img
+                src="https://img.icons8.com/windows/32/null/delete-sign.png"
+              />
+            </button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="other">
+        <div class="section">
+          <div>Total : {{total}}</div>
+        </div>
+        <a id="placeorder" href="https://buy.stripe.com/test_fZe02Z04PddP7SweUU"
+          >Place Order</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

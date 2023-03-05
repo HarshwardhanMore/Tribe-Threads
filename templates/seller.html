@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" />
+      </div>
+      <div>
+        <label for="gender">gender</label>
+        <input type="text" id="gender" name="gender" />
+      </div>
+      <div>
+        <label for="price">price</label>
+        <input type="text" id="price" name="price" />
+      </div>
+      <div>
+        <label for="description">description</label>
+        <input type="text" id="description" name="description" />
+      </div>
+      <div>
+        <label for="supercategory">super category</label>
+        <input type="text" id="supercategory" name="supercategory" />
+      </div>
+      <div>
+        <label for="subcategories">sub categories</label>
+        <input type="text" id="subcategories" name="subcategories" />
+      </div>
+      <div>
+        <label for="color">color</label>
+        <input type="text" id="color" name="color" />
+      </div>
+      <div>
+        <label for="brandname">brand name</label>
+        <input type="text" id="brandname" name="brandname" />
+      </div>
+      <div>
+        <label for="availablesize">available size</label>
+        <input type="text" id="availablesize" name="availablesize" />
+      </div>
+      <div>
+        <label for="age">age</label>
+        <input type="text" id="age" name="age" />
+      </div>
+      <div>
+        <label for="season">season</label>
+        <input type="text" id="season" name="season" />
+      </div>
+      <div>
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" />
+      </div>
+      <button type="submit">ADD</button>
+    </form>
+  </body>
+</html>

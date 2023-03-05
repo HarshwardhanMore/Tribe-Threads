@@ -1,0 +1,512 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tribe Threads | Shop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="{% static '/images/icon2.png' %}"
+      type="image/x-icon"
+    />
+
+    <style>
+      *,
+      html {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        /* background-color: lightblue; */
+        /* font-family: "Nunito", sans-serif; */
+        /* font-family: "Playfair Display", serif; */
+        /* font-family: "Tinos", serif; */
+        /* font-family: "Tinos", serif; */
+        font-family: "Italiana", serif;
+        background: rgb(250, 250, 250);
+        font-family: "Montserrat", sans-serif;
+
+        --col1: #ffefcd;
+        --col2: #a58e74;
+        /* --col2: #8f612d; */
+        --col3: #e09132;
+        --col4: #424530;
+        background: var(--col1);
+        color: var(--col4);
+        /* background: linear-gradient(var(--col2), var(--col1)); */
+        background: var(--col1);
+        color: var(--col4);
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--col2);
+        border-radius: 10px;
+      }
+      body .navbar {
+        height: 10%;
+        width: 100%;
+        /* background-color: grey; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* box-shadow: 3px 3px 10px 10px #a58e741c; */
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        /* background: var(--col2); */
+        color: var(--col4);
+        background: var(--col1);
+        /* display: none; */
+        border-bottom: 2px solid var(--col2);
+      }
+      body .navbar .inner {
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      body .navbar .inner > * {
+        width: 33%;
+      }
+      body .navbar .sec1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        height: 100%;
+      }
+      body .navbar .sec1 .collection {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 50%;
+        font-size: 18px;
+        /* font-weight: bold; */
+      }
+      body .navbar .sec1 .collection > * {
+        text-decoration: none;
+        color: var(--col4);
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 5px 0px;
+      }
+      body .navbar .sec1 .collection > *:hover {
+        /* color: var(--col4); */
+        /* font-weight: bold; */
+        transition: all;
+        transition-duration: 0.5s;
+        border-bottom-color: var(--col4);
+      }
+      body .navbar .sec2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      body .navbar .sec2 span {
+        /* color: #f25081; */
+      }
+      body .navbar .sec3 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: right;
+        height: 100%;
+      }
+      body .navbar .sec3 .collection {
+        width: 30%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 50%;
+      }
+      body .navbar > * img {
+        height: 80%;
+      }
+      body .main {
+        height: 90%;
+        width: 80%;
+        margin-top: 5%;
+      }
+      body .main > .cards {
+        width: 100%;
+        display: grid;
+        /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        /* gap: 4% 4%; */
+        column-gap: 60px;
+        row-gap: 50px;
+      }
+      body .main > .cards > * {
+        /* border: 2px solid red; */
+        align-self: center;
+      }
+      body .main > .cards .card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--col4);
+      }
+      body .main > .cards > .card .itemPic {
+        width: 100%;
+        border-radius: 100%;
+        border-radius: 3px;
+        margin-bottom: 5px;
+      }
+      body .main > .cards > .card .data {
+        margin: 5px 0px;
+        width: 90%;
+      }
+      body .main > .cards > .card #itemName {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      body .main > .cards > .card #itemDesc {
+        font-size: 15px;
+      }
+      body .main > .cards > .card #itemPrice {
+        font-weight: bold;
+        font-size: 15px;
+        color: var(--col3);
+      }
+      body .main > .cards > .card input {
+        display: none;
+      }
+      body .main > .cards > .card .btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        /* height: ; */
+        width: 90%;
+      }
+      body .main > .cards > .card .btns > * {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 5px 0px;
+      }
+      body .main > .cards > .card .btns button {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border-radius: 2px;
+        border: 1px solid #a58e7475;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* padding: 5px 0px; */
+        padding: 5px 0px;
+        cursor: pointer;
+      }
+      body .main > .cards > .card .btns button:hover {
+        border-color: #a58e74;
+        transition: all;
+        transition-duration: 0.5s;
+        /* background: rgb(49, 148, 230); */
+        /* color: white; */
+        /* <img src="https://img.icons8.com/sf-ultralight/50/000000/hearts.png"/> */
+      }
+      body .main > .cards > .card .btns button img {
+        width: 25px;
+      }
+
+      /* .toastForWishlist {
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        z-index: 1000;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.548);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .toastForWishlist .toast {
+        width: auto;
+        height: 15%;
+        background: var(--col1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 7px;
+        overflow: hidden;
+      }
+      .toastForWishlist .toast .btns {
+        height: 30%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      .toastForWishlist .toast .btns .wishlist {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: var(--col4);
+        padding: 5px 0px;
+        color: var(--col1);
+        background: var(--col4);
+      }
+      .toastForWishlist .toast .btns .close {
+        width: 50%;
+        height: 100%;
+        background: rgb(247, 90, 90);
+        background: var(--col3);
+        color: var(--col1);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 0px;
+        cursor: pointer;
+      }
+      .toastForWishlist .toast .msg {
+        height: 70%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 20px;
+      } */
+
+      /* @media screen and (min-width: 800px) and (max-width: 1650px) {
+        body {
+          background: green;
+        }
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="inner">
+        <div class="sec1">
+          <div class="collection">
+            <a href="./home">Home</a>
+            <a href="./shop">Shop</a>
+            <a href="./categories">Categories</a>
+          </div>
+        </div>
+
+        <h1 class="sec2">Tribe Threads<span></span></h1>
+
+        <div class="sec3">
+          <!-- <a href="shop">Shop</a> -->
+          <div class="collection">
+            <a href="wishlist"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/a58e74/hearts.png"
+            /></a>
+            <a href="cart"
+              ><img
+                src="https://img.icons8.com/sf-black-filled/64/a58e74/shopping-cart.png"
+            /></a>
+            <a href="#"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/a58e74/user-male-circle.png"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <br /><br />
+      <div class="cards">
+        {% for i in products %}
+        <div class="card">
+          <img
+            class="itemPic"
+            src="../media/productImages/{{i.imageName}}"
+            alt=""
+            aria-grabbed="false"
+          />
+          <div class="data">
+            <div id="itemName">{{i.name}}</div>
+            <div id="itemDesc">{{i}}</div>
+            <div id="itemPrice">₹ {{i.price}}</div>
+          </div>
+
+          <div class="btns">
+            <form id="cartArea" action="cart" method="post">
+              {% csrf_token %}
+              <input
+                type="text"
+                name="addToCart"
+                id="addToCart"
+                value="{{i.product_id}}"
+              />
+              <button
+                onclick="alert('Do you want to add this item to cart?\n It will redirect ou to the cart.')"
+                id="cartBtn"
+                type="submit"
+              >
+                <img
+                  src="https://img.icons8.com/external-anggara-detail-outline-anggara-putra/48/null/external-add-to-cart-retail-anggara-detail-outline-anggara-putra.png"
+                />
+                &nbsp; ADD TO CART
+              </button>
+            </form>
+
+            <form action="" method="post" id="items_to_wishlist_cart">
+              {% csrf_token %}
+              <!-- <div class="quantity"> -->
+              <input
+                type="text"
+                id="product_id"
+                name="product_id"
+                value="{{i.product_id}}"
+              />
+              <input type="text" id="quantity" name="quantity" value="1" />
+              <button
+                onclick="alert('Do you want to add this item to wishlist?')"
+                id="wishlistBtn"
+                type="submit"
+              >
+                <img
+                  src="https://img.icons8.com/sf-ultralight/50/null/hearts.png"
+                />&nbsp; WISHLIST
+              </button>
+              <!-- </div> -->
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- <div class="toastForWishlist">
+      <div class="toast">
+        <div class="msg">The product is successfully added to Wishlist!</div>
+        <div class="btns">
+          <a class="wishlist" href="wishlist">Wishlist</a>
+          <div class="close">Close</div>
+        </div>
+      </div>
+    </div> -->
+    <!-- <div>
+
+
+      <h2>Wishlist</h2>
+      <div>
+        {% for i in wishlist %}
+        <div>
+          <div>
+            <img
+              src="../media/productImages/{{i.image_name}}"
+              alt="Image Render Fault!"
+            />
+          </div>
+          <div>{{i.brand}}</div>
+          <div>{{i.name}}</div>
+          <div>{{i.color}}</div>
+          <div>{{i.size}}</div>
+          <div>{{i.quantity}}</div>
+          <div>{{i.price}}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div> -->
+
+    <!-- <div>
+      <div>Elements in cart :</div>
+      <div id="totalCartCount"></div>
+    </div> -->
+    <!-- <script src="{% static 'scripts/shop.js' %}"></script> -->
+    <script>
+      function goToCart() {
+        document.getElementById("items_to_wishlist_cart").action = "cart";
+      }
+
+      var cart = {};
+      function setCartSize() {
+        var count = Object.keys(cart).length;
+        if (count > 0) {
+          document.getElementById("totalCartCount").innerHTML = count;
+        }
+      }
+      function addItemToCart(i) {
+        if (cart.hasOwnProperty("price_" + i)) {
+          document.getElementById("price_" + i).innerHTML =
+            document.getElementById("price_" + i).innerHTML;
+        } else {
+          cart["price_" + i] = 1;
+          document.getElementById("price_" + i).innerHTML = 1;
+        }
+        setCartSize();
+      }
+      function increaseQuantity(i) {
+        // console.log(document.getElementById("price_" + i).innerHTML);
+        document.getElementById("price_" + i).innerHTML =
+          document.getElementById("price_" + i).innerHTML - "0" + 1;
+        if (cart.hasOwnProperty("price_" + i)) {
+          cart["price_" + i] = cart["price_" + i] + 1;
+        } else {
+          cart["price_" + i] = 1;
+        }
+        console.log("Cart : ");
+        for (var i in cart) {
+          console.log(i);
+          console.log(cart[i]);
+        }
+        setCartSize();
+      }
+      function decreaseQuantity(i) {
+        if (document.getElementById("price_" + i).innerHTML - "0" == 0) {
+          document.getElementById("price_" + i).innerHTML = 0;
+        } else {
+          document.getElementById("price_" + i).innerHTML =
+            document.getElementById("price_" + i).innerHTML - "0" - 1;
+        }
+        console.log(document.getElementById("price_" + i).innerHTML);
+        setCartSize();
+      }
+    </script>
+  </body>
+</html>

@@ -1,193 +1,318 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tribe Threads | Register</title>
+    <link rel="shortcut icon" href="../media/icon2.png" type="image/x-icon" />
 
-<head>
-    <title>Register | Blood Bank Management</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+          rel="stylesheet"
+        /> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Tinos&display=swap"
+          rel="stylesheet"
+        /> -->
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+          rel="stylesheet"
+        /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #7abecc !important;
-        }
-        
-        .user_card {
-            width: 350px;
-            margin-top: auto;
-            margin-bottom: auto;
-            background: #74cfbf;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            border-radius: 5px;
-        }
-        
-        .form_container {
-            margin-top: 20px;
-        }
-        
-        #form-title {
-            color: #fff;
-        }
-        
-        .login_btn {
-            width: 100%;
-            background: #33ccff !important;
-            color: white !important;
-        }
-        
-        .login_btn:focus {
-            box-shadow: none !important;
-            outline: 0px !important;
-        }
-        
-        .login_container {
-            padding: 0 2rem;
-        }
-        
-        .input-group-text {
-            background: #f7ba5b !important;
-            color: white !important;
-            border: 0 !important;
-            border-radius: 0.25rem 0 0 0.25rem !important;
-        }
-        
-        .input_user,
-        .input_pass:focus {
-            box-shadow: none !important;
-            outline: 0px !important;
-        }
+      *,
+      html {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        font-family: "Italiana", serif;
+        font-family: "Montserrat", sans-serif;
+
+        --col1: #ffefcd;
+        --col2: #a58e74;
+        --col3: #e09132;
+        --col4: #424530;
+        overflow: hidden;
+        background: url("../media/login-logout.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .main {
+        width: 23%;
+        height: 80%;
+        background: var(--col2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--col1);
+        border-radius: 10px;
+        background: #ffefcdab;
+        backdrop-filter: blur(10px);
+      }
+      .main > .heading {
+        height: 20%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid var(--col2);
+      }
+      .main > form {
+        height: 80%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .main > form > * {
+        margin: 3% 0px;
+      }
+      .main > form .inputgrp {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        /* background: var(--col2); */
+      }
+      .main > form .inputgrp > * {
+        margin: 2px 0px;
+      }
+      .main > form .inputgrp2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+      }
+      .main > form .inputgrp > * {
+        margin: 2px 0px;
+        width: 96%;
+      }
+      .main > form .inputgrp2 > * {
+        /* margin: 2px 0px; */
+        width: 44%;
+      }
+      .main > form .inputgrp2 .innergrp1 {
+        /* margin: 2px 0px; */
+        /* width: 46%; */
+        margin-right: 8%;
+      }
+      .main > form .inputgrp input {
+        width: 100%;
+        border: 1px solid var(--col4);
+        border-bottom: 2px solid var(--col4);
+        background: var(--col1);
+        border-radius: 4px;
+        padding: 9px 7px;
+        font-size: 15px;
+        color: var(--col4);
+        background: transparent;
+        font-family: "Montserrat", sans-serif;
+      }
+      .main > form .inputgrp input:focus {
+        border-color: var(--col3);
+      }
+
+      ::-webkit-input-placeholder {
+        /* padding: 9px 7px; */
+        font-size: 15px;
+        color: var(--col2);
+        font-family: "Montserrat", sans-serif;
+      }
+      textarea:focus,
+      input:focus {
+        outline: none;
+      }
+
+      .main > form .btngrp {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        /* justify-content: space-evenly; */
+        align-items: center;
+        width: 100%;
+      }
+      .main > form .btngrp > * {
+        /* background: var(--col3);
+          margin: 0px 20%;
+          padding: 5px 8px;
+          display: block;
+          width: 30%; */
+        /* margin: 0px 20%; */
+        padding: 7px 15px;
+        display: block;
+        background: var(--col4);
+        border: 2px solid transparent;
+        border-radius: 5px;
+        font-size: 15px;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .main > form .btngrp button {
+        color: var(--col1);
+        font-weight: bold;
+      }
+      .main > form .btngrp button:hover {
+        color: var(--col1);
+        background: var(--col3);
+        font-weight: bold;
+        transition: all;
+        transition-duration: 0.2s;
+      }
+      .main > form .btngrp a {
+        border-color: var(--col4);
+        background: var(--col1);
+        color: var(--col4);
+      }
+      .main > form .btngrp a:hover {
+        border-color: var(--col3);
+        background: var(--col1);
+        color: var(--col3);
+        transition: all;
+        transition-duration: 0.2s;
+      }
+
+      .main form .inputgrp3 a {
+        display: inline;
+        color: var(--col4);
+      }
+      .main form .inputgrp3 a:hover {
+        color: var(--col3);
+      }
+      .errors {
+        position: absolute;
+        bottom: 0px;
+        left: auto;
+        width: 23%;
+        height: 8%;
+        border-radius: 10px;
+        /* background: var(--col2); */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background: #ffefcdab;
+        backdrop-filter: blur(10px);
+        visibility: hidden;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-    <div class="bs">
-        <nav style="background-color: #FF0018;" class="navbar navbar-expand-md navbar-dark fixed-top">
-            <image src="/static/Blood.PNG" fill="none" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-10 h-10 text-white p-1 bg-white rounded-full" viewBox="0 0 24 24">
-                </svg>
-                <a href="/" class="navbar-brand">&nbsp;&nbsp;Blood Bank Management</a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                </div>
-        </nav>
-    </div>
-    <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
-            <div class="user_card">
-                <div class="d-flex justify-content-center">
-                    <h3 id="form-title">REGISTER ACCOUNT</h3>
-                </div>
-                <div class="d-flex justify-content-center form_container">
-
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <!-- <input type="text" name="first_name" id="first_name" value="{{form.first_name}}"></form> -->
-                        <!-- <input type="text" name="first_name" id="first_name" value="{{form.first_name}}"></form> -->
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            {{form.first_name}}
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            {{form.last_name}}
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            {{form.username}}
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                            </div>
-                            {{form.email}}
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            {{form.password1}}
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            {{form.password2}}
-                        </div>
-
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <input class="btn login_btn" type="submit" value="Register Account">
-                        </div>
-                    </form>
-                </div>
-
-                {{form.errors}}
-
-                <div class="mt-4">
-                    <div class="d-flex justify-content-center links">
-                        Already have an account? <a href="./login" class="ml-2">Login</a>
-                    </div>
-                </div>
-            </div>
+  <body>
+    <div class="main">
+      <div class="heading">Tribe Threads</div>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="inputgrp inputgrp2">
+          <div class="innergrp1">
+            <label for="first_name">Enter First Name</label>
+            <div id="first_name" class="input">{{form.first_name}}</div>
+          </div>
+          <div class="innergrp2">
+            <label for="last_name">Enter Last Name</label>
+            <div id="last_name" class="input">{{form.last_name}}</div>
+          </div>
         </div>
+        <div class="inputgrp">
+          <label for="username">Enter Username</label>
+          <div id="username" class="input">{{form.username}}</div>
+        </div>
+        <div class="inputgrp">
+          <label for="email">Enter Email</label>
+          <div id="email" class="input">{{form.email}}</div>
+        </div>
+        <div class="inputgrp">
+          <label for="password1">Enter Password</label>
+          <div id="password1" class="input">{{form.password1}}</div>
+        </div>
+        <div class="inputgrp">
+          <label for="password2">Confirm Password</label>
+          <div id="password2" class="input">{{form.password2}}</div>
+        </div>
+        <div class="btngrp">
+          <button type="submit">Register</button>
+          <!-- &nbsp; &nbsp;
+          <a href="login">Sign in</a> -->
+        </div>
+
+        <div class="inputgrp3">
+          Do You have an Account? <a href="login">Log in</a>
+        </div>
+      </form>
     </div>
+
+    <div class="errors" id="errors">
+      <div class="inputgrp" id="error">{{form.errors}}</div>
+    </div>
+
+    <form method="POST" action="">
+      {% csrf_token %}
+      <!-- <input type="text" name="first_name" id="first_name" value="{{form.first_name}}"></form> -->
+      <!-- <input type="text" name="first_name" id="first_name" value="{{form.first_name}}"></form> -->
+      <!-- {{form.last_name}} {{form.username}} {{form.email}} {{form.password1}}
+      {{form.password2}} {{form.errors}} -->
+
+      <!-- <button type="submit">Register</button> -->
+    </form>
+
     <script>
-        /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+      if (document.getElementById("error").innerHTML == "") {
+        document.getElementById("errors").style.visibility = "hidden";
+      } else {
+        document.getElementById("errors").style.visibility = "visible";
+      }
+
+      /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
                                                                                                                                                                                                                                                                                                         		//We start indexing at one because CSRF_token is considered and input field 
                                                                                                                                                                                                                                                                                                         		 */
 
-        //Query All input fields
-        var form_fields = document.getElementsByTagName('input')
-        form_fields[1].placeholder = 'First Name';
-        form_fields[2].placeholder = 'Last Name';
-        form_fields[3].placeholder = 'Username';
-        form_fields[4].placeholder = 'Email';
-        form_fields[5].placeholder = 'Enter Password';
-        form_fields[6].placeholder = 'Re-enter Password';
+      //Query All input fields
+      var form_fields = document.getElementsByTagName("input");
+      form_fields[1].placeholder = "Eg. Harshwardhan";
+      form_fields[2].placeholder = "Eg. More";
+      form_fields[3].placeholder = "Eg. harsh27042002";
+      form_fields[4].placeholder = "Eg. harshwardhanmore14@gmail.com";
+      form_fields[5].placeholder = "Eg. Pass@123";
+      form_fields[6].placeholder = "Eg. Pass@123";
 
-        for (var field in form_fields) {
-            form_fields[field].className += ' form-control'
-        }
+      //   for (var field in form_fields) {
+      //     form_fields[field].className += " form-control";
+      //   }
     </script>
-    <style>
-        .footer {
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color: #FF0018;
-            color: white;
-            text-align: center;
-            height: 50px;
-        }
-    </style>
-    </head>
-
-
-
-    <!-- <div class="footer">
-        <p> Made By Arnav Mukkawar <br>&copy; 2022
-        </p>
-
-    </div> -->
-</body>
-
+  </body>
 </html>

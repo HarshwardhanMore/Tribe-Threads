@@ -18,6 +18,14 @@
       href="{% static '/images/icon2.png' %}"
       type="image/x-icon"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
     <style>
       *,
       html {
@@ -154,7 +162,7 @@
 
         margin-top: 5%;
       }
-      body .main > .cards {
+      body .main > .mycards {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -163,40 +171,40 @@
         column-gap: 60px;
         row-gap: 50px;
       }
-      body .main > .cards > * {
+      body .main > .mycards > * {
         /* border: 2px solid red; */
         align-self: center;
       }
-      body .main > .cards .card {
+      body .main > .mycards .mycard {
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
       }
-      body .main > .cards > .card .itemPic {
+      body .main > .mycards > .mycard .itemPic {
         width: 100%;
       }
-      body .main > .cards > .card .data {
+      body .main > .mycards > .mycard .data {
         margin: 5px 0px;
         width: 90%;
       }
-      body .main > .cards > .card #itemName {
+      body .main > .mycards > .mycard #itemName {
         font-weight: bold;
         font-size: 18px;
       }
-      body .main > .cards > .card #itemDesc {
+      body .main > .mycards > .mycard #itemDesc {
         font-size: 16px;
       }
-      body .main > .cards > .card #itemPrice {
+      body .main > .mycards > .mycard #itemPrice {
         font-weight: bold;
         font-size: 15px;
         color: var(--col3);
       }
-      body .main > .cards > .card input {
+      body .main > .mycards > .mycard input {
         display: none;
       }
-      body .main > .cards > .card .btns {
+      body .main > .mycards > .mycard .btns {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -204,7 +212,7 @@
         width: 100%;
         width: 90%;
       }
-      body .main > .cards > .card .btns > * {
+      body .main > .mycards > .mycard .btns > * {
         width: 100%;
         height: 50%;
         display: flex;
@@ -213,7 +221,7 @@
         justify-content: center;
         margin: 5px 0px;
       }
-      body .main > .cards > .card .btns button {
+      body .main > .mycards > .mycard .btns button {
         width: 100%;
         height: 100%;
         background: transparent;
@@ -226,8 +234,10 @@
         justify-content: center;
         padding: 5px 0px;
         cursor: pointer;
+
+        /* font-family: "Montserrat", serif; */
       }
-      body .main > .cards > .card .btns button:hover {
+      body .main > .mycards > .mycard .btns button:hover {
         border-color: var(--col4);
         transition: all;
         transition-duration: 0.5s;
@@ -235,33 +245,33 @@
         /* color: white; */
         /* <img src="https://img.icons8.com/sf-ultralight/50/000000/hearts.png"/> */
       }
-      body .main > .cards > .card .btns button img {
+      body .main > .mycards > .mycard .btns button img {
         width: 25px;
       }
       /* body .main {
         height: 90%;
         width: 80%;
       }
-      body .main > .cards {
+      body .main > .mycards {
         width: 100%;
         display: grid;
         grid-template-columns: 1fr;
         grid-auto-rows: minmax(100px, auto);
         row-gap: 50px;
       }
-      body .main > .cards > * {
+      body .main > .mycards > * {
         align-self: center;
       }
-      body .main > .cards .card {
+      body .main > .mycards .mycard {
         display: flex;
         flex-direction: row;
         align-items: center;
         height: 25vh;
       }
-      body .main > .cards .card .itemPic {
+      body .main > .mycards .mycard .itemPic {
         height: 100%;
       }
-      body .main > .cards .card .itemPic img {
+      body .main > .mycards .mycard .itemPic img {
         height: 100%;
       } */
     </style>
@@ -301,9 +311,9 @@
 
     <div class="main">
       <br /><br />
-      <div class="cards">
+      <div class="mycards">
         {% for i in wishlist %}
-        <div class="card">
+        <div class="mycard">
           <div class="itemPic">
             <img
               class="itemPic"
@@ -343,5 +353,21 @@
         {% endfor %}
       </div>
     </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

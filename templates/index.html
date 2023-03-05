@@ -632,6 +632,18 @@
         width: 100%;
         text-align: right;
         padding-right: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+      }
+      #horizontal .msg span {
+        color: var(--col3);
+      }
+      #horizontal a {
+        color: var(--col3);
       }
       .header {
         position: fixed;
@@ -664,7 +676,8 @@
           <div class="collection">
             <a href="./home">Home</a>
             <a href="./shop">Shop</a>
-            <a href="./categories">Categories</a>
+            <!-- <a href="./categories">Categories</a> -->
+            <a href="./seller">Business</a>
           </div>
         </div>
         <!-- Kultura Apparel
@@ -690,7 +703,7 @@
               ><img
                 src="https://img.icons8.com/sf-black-filled/64/ffefcd/shopping-cart.png"
             /></a>
-            <a href="#"
+            <a href="profile"
               ><img
                 src="https://img.icons8.com/ios-filled/50/ffefcd/user-male-circle.png"
             /></a>
@@ -932,7 +945,19 @@
       <!-- <div class="otherCategories"></div> -->
     </div>
 
-    <div id="horizontal">Group 12 - SDAM</div>
+    <div id="horizontal">
+      <div class="msg">Made with <span> ♥ </span> by Harshwardhan More</div>
+      <div>
+        <span> LinkedIn/</span
+        ><a href="https://www.linkedin.com/in/HarshwardhanMore/">
+          HarshwardhanMore</a
+        >
+        &nbsp;&nbsp;
+        <span> Github/</span>
+        <a href="https://github.com/HarshwardhanMore"> HarshwardhanMore</a>
+      </div>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

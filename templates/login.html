@@ -193,6 +193,27 @@
         transition: all;
         transition-duration: 0.2s;
       } */
+
+      #horizontal {
+        font-weight: bold;
+        color: var(--col1);
+        background: var(--col4);
+        width: 100%;
+        text-align: right;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+      }
+      #horizontal .msg span {
+        color: var(--col3);
+      }
+      #horizontal a {
+        color: var(--col3);
+      }
     </style>
   </head>
 
@@ -251,6 +272,19 @@
           Don't have an Account? <a href="register">Sign Up</a>
         </div>
       </form>
+    </div>
+
+    <div id="horizontal">
+      <div class="msg">Made with <span> ♥ </span> by Harshwardhan More</div>
+      <div>
+        <span> LinkedIn/</span
+        ><a href="https://www.linkedin.com/in/HarshwardhanMore/">
+          HarshwardhanMore</a
+        >
+        &nbsp;&nbsp;
+        <span> Github/</span>
+        <a href="https://github.com/HarshwardhanMore"> HarshwardhanMore</a>
+      </div>
     </div>
   </body>
 </html>

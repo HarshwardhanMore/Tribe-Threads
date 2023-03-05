@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Database
 from .models import UserSpace
+from .models import UserSpace
+
+from django.contrib.auth.models import User
 # Create your views here.
 
 from numpy import random
@@ -791,6 +794,32 @@ def categories(request):
     return render(request, "categories.html", context=context)
 
 
+
+def profile(request):
+    
+    my_obj = UserSpace.objects.filter(user_id=request.user)
+    wishlist_len = 0
+    cart_len = 0
+
+    if(my_obj):
+        jsonDec = json.decoder.JSONDecoder()
+        wishlist_len = len(jsonDec.decode(my_obj[0].wishlist))
+        cart_len = len(jsonDec.decode(my_obj[0].cart))
+
+    print(wishlist_len)
+    print(cart_len)
+
+    me = User.objects.filter(username=request.user)
+    if(me):
+        me = me[0]
+
+    context={"me":me,
+             "wishlist_len": wishlist_len, 
+             "cart_len": cart_len}
+
+    return render(request, "profile.html", context=context)
+
+
 # ############################## LOGIN
 
 
@@ -814,7 +843,6 @@ def loginpage(request):
 
         context = {}
         return render(request, 'login.html')
-
 
 def logoutUser(request):
     logout(request)

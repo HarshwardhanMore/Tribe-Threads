@@ -215,10 +215,11 @@
       }
       .errors {
         position: absolute;
-        bottom: 0px;
-        left: auto;
-        width: 23%;
-        height: 8%;
+        bottom: auto;
+        right: 7%;
+        width: 20%;
+        height: max-content;
+        padding: 20px 30px;
         border-radius: 10px;
         /* background: var(--col2); */
         display: flex;
@@ -227,8 +228,36 @@
         align-items: center;
 
         background: #ffefcdab;
+        /* background: #e092324d; */
         backdrop-filter: blur(10px);
         visibility: hidden;
+      }
+      .errors .heading {
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+      }
+
+      #horizontal {
+        font-weight: bold;
+        color: var(--col1);
+        background: var(--col4);
+        width: 100%;
+        text-align: right;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+      }
+      #horizontal .msg span {
+        color: var(--col3);
+      }
+      #horizontal a {
+        color: var(--col3);
       }
     </style>
   </head>
@@ -277,6 +306,7 @@
     </div>
 
     <div class="errors" id="errors">
+      <div class="heading">Warnings</div>
       <div class="inputgrp" id="error">{{form.errors}}</div>
     </div>
 
@@ -290,7 +320,20 @@
       <!-- <button type="submit">Register</button> -->
     </form>
 
+    <div id="horizontal">
+      <div class="msg">Made with <span> ♥ </span> by Harshwardhan More</div>
+      <div>
+        <span> LinkedIn/</span
+        ><a href="https://www.linkedin.com/in/HarshwardhanMore/">
+          HarshwardhanMore</a
+        >
+        &nbsp;&nbsp;
+        <span> Github/</span>
+        <a href="https://github.com/HarshwardhanMore"> HarshwardhanMore</a>
+      </div>
+    </div>
     <script>
+      document.getElementById("errors").style.visibility = "hidden";
       if (document.getElementById("error").innerHTML == "") {
         document.getElementById("errors").style.visibility = "hidden";
       } else {

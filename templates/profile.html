@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tribe Threads | Cart</title>
+    <title>Tribe Threads | Profile</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,6 +26,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+
     <style>
       *,
       html {
@@ -49,12 +50,15 @@
 
         --col1: #ffefcd;
         --col2: #a58e74;
+        /* --col2: #8f612d; */
         --col3: #e09132;
         --col4: #424530;
         background: var(--col1);
         color: var(--col4);
-        overflow-x: hidden;
         /* background: linear-gradient(var(--col2), var(--col1)); */
+        background: var(--col1);
+        color: var(--col4);
+        overflow-x: hidden;
       }
       ::-webkit-scrollbar {
         width: 10px;
@@ -64,7 +68,7 @@
       }
       ::-webkit-scrollbar-thumb {
         background: var(--col2);
-        border-radius: 3px;
+        border-radius: 10px;
       }
       body .navbar {
         height: 10%;
@@ -75,11 +79,13 @@
         align-items: center;
         justify-content: center;
         /* box-shadow: 3px 3px 10px 10px #a58e741c; */
-        position: sticky;
+        position: fixed;
         top: 0px;
         left: 0px;
         /* background: var(--col2); */
         color: var(--col4);
+        background: var(--col1);
+        /* display: none; */
         border-bottom: 2px solid var(--col2);
       }
       body .navbar .inner {
@@ -155,152 +161,103 @@
         height: 80%;
       }
       body .main {
-        height: 90%;
-        width: 60%;
+        height: 80%;
+        width: 80%;
+        margin-top: 5%;
+        /* overflow-y: scroll;s */
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
       }
-      body .main > .cards {
-        width: 65%;
-        height: 90%;
-        /* display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: minmax(100px, auto); */
+      body .main .table {
         display: flex;
         flex-direction: column;
         align-items: center;
-        row-gap: 15px;
-        justify-items: center;
-        overflow-y: scroll;
-        /* border: 1px solid #f25081; */
-      }
-      body .main > .other {
-        width: 33%;
-        height: 90%;
-        /* border: 1px solid rgba(153, 153, 153, 0.356); */
-        /* position: fixed; */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: space-between;
-      }
-      body .main > .other .section {
         width: 100%;
         height: 100%;
-        border: 1px solid var(--col2);
-        border-radius: 5px;
-        /* position: fixed; */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 15px;
       }
-      body .main > .cards > * {
-        /* border: 2px solid red; */
-        align-self: center;
-        /* border: 1px solid blue; */
-      }
-      body .main > .cards .card {
-        width: 90%;
-        height: 20vh;
+      body .main .table .row {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        border: 1px solid var(--col2);
-        padding: 15px;
-        background: white;
-        background: transparent;
-        border-radius: 5px;
-      }
-      body .main > .cards > .card .itemPic {
-        height: 100%;
-      }
-      body .main > .cards > .card .data {
-        /* margin: 5px 0px; */
-        width: 90%;
-        padding: 0px 20px;
-      }
-      body .main > .cards > .card .data > * {
-        margin: 5px 0px;
-      }
-      body .main > .cards > .card #itemName {
-        font-weight: bold;
-        font-size: 18px;
-      }
-      body .main > .cards > .card #itemDesc {
-        font-size: 16px;
-      }
-      body .main > .cards > .card #itemColor span {
-        font-weight: bold;
-      }
-      body .main > .cards > .card #itemPrice {
-        font-weight: bold;
-        font-size: 15px;
-        color: var(--col3);
-      }
-      body .main > .cards > .card .data form {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
-      body .main > .cards > .card .data select {
-        border: none;
-        background: rgba(153, 153, 153, 0.11);
-        padding: 3px;
-      }
-      body .main > .cards > .card .data form #quantityBtn {
-        /* background: transparent;
-        border: none;
-        width: 27px;
-        padding: 0px;
-        margin: 0px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 100%;
-        cursor: pointer; */
-      }
-      body .main > .cards > .card .data form #quantityBtn img {
         width: 100%;
+        height: 10vh;
+
+        border-bottom: 2px solid var(--col2);
+        background: var(--col1);
+        color: var(--col4);
       }
-      body .main > .cards > .card input {
-        display: none;
+      /* body .main .table .row:hover {
+          background: var(--col2);
+          color: var(--col1);
+        } */
+      body .main .table .row > * {
+        width: 50%;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
       }
-      body .main > .cards > .card form {
-        display: block;
-        height: 100%;
-      }
-      body .main > .other #placeorder {
-        display: block;
-        width: 100%;
-        background: var(--col2);
-        color: var(--col1);
+      body .main .table .row a {
+        padding: 3px 10px;
+        font-weight: bold;
         text-decoration: none;
-        text-align: center;
-        padding: 10px 0px;
-        font-weight: bold;
         border-radius: 5px;
+        font-size: 15px;
+        background: var(--col1);
+        color: var(--col3);
+        border: 1px solid var(--col3);
       }
-      body .main > .cards > .card #removeBtn {
-        background: transparent;
-        border: none;
-        width: 27px;
-        /* border: 1px solid rgba(0, 0, 0, 0.027);
-        background: rgba(0, 0, 0, 0.027); */
-        padding: 0px;
-        margin: 0px;
+
+      body .main .table .row a:hover {
+        background: var(--col3);
+        color: var(--col1);
+        border-color: var(--col3);
+        transition: all;
+        transition-duration: 0.2s;
+      }
+      body .main .table .row .col1 {
+        /* font-weight: bold;
+        border-bottom: 2px solid var(--col2);
+        background: var(--col1);
+        color: var(--col4); */
+        /* border-left: 2px solid var(--col2); */
+      }
+      body .main .table .row .col2 {
+        /* background: var(--col1);
+        color: var(--col4);
+        border-bottom: 2px solid var(--col2); */
+      }
+      body .main .heading {
+        /* text-align: center; */
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        height: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        border-radius: 100%;
-        /* padding: 2px; */
-        cursor: pointer;
+        padding: 2% 0px;
+        border-bottom: 2px solid var(--col2);
       }
-      body .main > .cards > .card #removeBtn img {
-        width: 100%;
+      body .main .actions {
+        padding: 3% 0px;
+      }
+      body .main .actions a {
+        padding: 10px 20px;
+        font-weight: bold;
+        background: var(--col3);
+        color: var(--col1);
+        border: 2px solid var(--col3);
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 17px;
+      }
+      body .main .actions a:hover {
+        background: var(--col1);
+        color: var(--col3);
+
+        transition: all;
+        transition-duration: 0.2s;
       }
 
       #horizontal {
@@ -339,6 +296,7 @@
         <h1 class="sec2">Tribe Threads<span></span></h1>
 
         <div class="sec3">
+          <!-- <a href="shop">Shop</a> -->
           <div class="collection">
             <a href="wishlist"
               ><img
@@ -357,79 +315,49 @@
       </div>
     </div>
 
-    <!-- <br /><br /> -->
     <div class="main">
-      <div class="cards">
-        {% for i in cart_products %}
-        <div class="card">
-          <div class="itemPic">
-            <img
-              class="itemPic"
-              src="../media/productImages/{{i.imageName}}"
-              alt=""
-            />
-          </div>
-          <div class="data">
-            <div id="itemName">{{i.name}}</div>
-            <div id="itemDesc">{{i}}</div>
-            <div id="itemColor"><span> Color </span> : {{i.color}}</div>
-            <form action="" method="post">
-              <!-- <button id="quantityBtn" type="submit">
-                <img
-                  src="https://img.icons8.com/ios-filled/50/null/minus-math.png"
-                />
-              </button>
-              <div class="quantity">1</div>
-              <button id="quantityBtn" type="submit">
-                <img
-                  src="https://img.icons8.com/ios-filled/50/1A1A1A/plus-math.png"
-                />
-              </button> -->
-
-              <select name="size" id="size">
-                <option value="none" selected disabled>Size</option>
-                <option value="32">32</option>
-                <option value="34">34</option>
-                <option value="36">36</option>
-                <option value="38">38</option>
-                <option value="40">40</option>
-              </select>
-              &nbsp; &nbsp;
-              <select name="quantity" id="quantity">
-                <option value="none" selected disabled>Quantity</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </form>
-            <div id="itemPrice">₹ {{i.price}}</div>
-          </div>
-          <form action="" method="post">
-            {% csrf_token %}
-            <input
-              type="text"
-              name="remove"
-              id="remove"
-              value="{{i.product_id}}"
-            />
-            <button id="removeBtn" type="submit">
-              <img
-                src="https://img.icons8.com/windows/32/null/delete-sign.png"
-              />
-            </button>
-          </form>
+      <div class="heading">Profile</div>
+      <div class="table">
+        <div class="row">
+          <div class="col1">Username</div>
+          <div class="col2">{{me.username}}</div>
         </div>
-        {% endfor %}
+        <div class="row">
+          <div class="col1">First name</div>
+          <div class="col2">{{me.first_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Last name</div>
+          <div class="col2">{{me.last_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Signup Date</div>
+          <div class="col2"></div>
+        </div>
+        <div class="row">
+          <div class="col1">Past Orders</div>
+          <div class="col2">0</div>
+        </div>
+        <div class="row">
+          <div class="col1">Total Purchase History</div>
+          <div class="col2">₹ 0</div>
+        </div>
+        <div class="row">
+          <div class="col1">Total items in Wishlist</div>
+          <div class="col2">
+            {{wishlist_len}} &nbsp;&nbsp;<a href="wishlist">View</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col1">Total items in Cart</div>
+          <div class="col2">
+            {{cart_len}} &nbsp;&nbsp;<a href="cart">View</a>
+          </div>
+        </div>
       </div>
-      <div class="other">
-        <div class="section">
-          <div>Total : {{total}}</div>
-        </div>
-        <a id="placeorder" href="https://buy.stripe.com/test_fZe02Z04PddP7SweUU"
-          >Place Order</a
-        >
+
+      <div class="actions">
+        <a href="logout" onclick="confirm('are you sure to logout?')">Logout</a>
       </div>
     </div>
 
@@ -445,6 +373,7 @@
         <a href="https://github.com/HarshwardhanMore"> HarshwardhanMore</a>
       </div>
     </div> -->
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -460,5 +389,93 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <!-- <div class="toastForWishlist">
+      <div class="toast">
+        <div class="msg">The product is successfully added to Wishlist!</div>
+        <div class="btns">
+          <a class="wishlist" href="wishlist">Wishlist</a>
+          <div class="close">Close</div>
+        </div>
+      </div>
+    </div> -->
+    <!-- <div>
+
+
+      <h2>Wishlist</h2>
+      <div>
+        {% for i in wishlist %}
+        <div>
+          <div>
+            <img
+              src="../media/productImages/{{i.image_name}}"
+              alt="Image Render Fault!"
+            />
+          </div>
+          <div>{{i.brand}}</div>
+          <div>{{i.name}}</div>
+          <div>{{i.color}}</div>
+          <div>{{i.size}}</div>
+          <div>{{i.quantity}}</div>
+          <div>{{i.price}}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div> -->
+
+    <!-- <div>
+      <div>Elements in cart :</div>
+      <div id="totalCartCount"></div>
+    </div> -->
+    <!-- <script src="{% static 'scripts/shop.js' %}"></script> -->
+    <script>
+      function goToCart() {
+        document.getElementById("items_to_wishlist_cart").action = "cart";
+      }
+
+      var cart = {};
+      function setCartSize() {
+        var count = Object.keys(cart).length;
+        if (count > 0) {
+          document.getElementById("totalCartCount").innerHTML = count;
+        }
+      }
+      function addItemToCart(i) {
+        if (cart.hasOwnProperty("price_" + i)) {
+          document.getElementById("price_" + i).innerHTML =
+            document.getElementById("price_" + i).innerHTML;
+        } else {
+          cart["price_" + i] = 1;
+          document.getElementById("price_" + i).innerHTML = 1;
+        }
+        setCartSize();
+      }
+      function increaseQuantity(i) {
+        // console.log(document.getElementById("price_" + i).innerHTML);
+        document.getElementById("price_" + i).innerHTML =
+          document.getElementById("price_" + i).innerHTML - "0" + 1;
+        if (cart.hasOwnProperty("price_" + i)) {
+          cart["price_" + i] = cart["price_" + i] + 1;
+        } else {
+          cart["price_" + i] = 1;
+        }
+        console.log("Cart : ");
+        for (var i in cart) {
+          console.log(i);
+          console.log(cart[i]);
+        }
+        setCartSize();
+      }
+      function decreaseQuantity(i) {
+        if (document.getElementById("price_" + i).innerHTML - "0" == 0) {
+          document.getElementById("price_" + i).innerHTML = 0;
+        } else {
+          document.getElementById("price_" + i).innerHTML =
+            document.getElementById("price_" + i).innerHTML - "0" - 1;
+        }
+        console.log(document.getElementById("price_" + i).innerHTML);
+        setCartSize();
+      }
+    </script>
   </body>
 </html>

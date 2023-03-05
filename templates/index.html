@@ -737,36 +737,36 @@
               <div class="carousel-item active">
                 <img
                   class="d-block w-100"
-                  src="{% static '/images/slider_images/img5.jpg' %}"
+                  src="../media/slider_images/img5.jpg"
                   alt="First slide"
                 />
               </div>
               <div class="carousel-item">
                 <img
                   class="d-block w-100"
-                  src="{% static '/images/slider_images/img2.jpg' %}"
+                  src="../media/slider_images/img2.jpg"
                   alt="Second slide"
                 />
               </div>
               <div class="carousel-item">
                 <img
                   class="d-block w-100"
-                  src="{% static '/images/slider_images/img3.jpg' %}"
+                  src="../media/slider_images/img3.jpg"
                   alt="Third slide"
                 />
               </div>
               <div class="carousel-item">
                 <img
                   class="d-block w-100"
-                  src="{% static '/images/slider_images/img6.jpg' %}"
+                  src="../media/slider_images/img6.jpg"
                   alt="Fourth slide"
                 />
               </div>
               <div class="carousel-item">
                 <img
                   class="d-block w-100"
-                  src="{% static '/images/slider_images/img7.jpg' %}"
-                  alt="Third slide"
+                  src="../media/slider_images/img7.jpg"
+                  alt="Fifth slide"
                 />
               </div>
             </div>
@@ -807,28 +807,28 @@
             {% csrf_token %}
             <input type="text" name="gender" value="Men" />
             <button type="submit">
-              <img src="{% static '/images/mens1.jpg' %}" alt="" />
+              <img src="../media/mens1.jpg" alt="" />
             </button>
           </form>
           <form class="women" action="shop" method="post">
             {% csrf_token %}
             <input type="text" name="gender" value="Women" />
             <button type="submit">
-              <img src="{% static '/images/womens1.jpg' %}" alt="" />
+              <img src="../media/womens1.jpg" alt="" />
             </button>
           </form>
           <form class="kids" action="shop" method="post">
             {% csrf_token %}
             <input type="text" name="gender" value="Kids" />
             <button type="submit">
-              <img src="{% static '/images/kids1.jpg' %}" alt="" />
+              <img src="../media/kids1.jpg" alt="" />
             </button>
           </form>
           <form class="other" action="shop" method="post">
             {% csrf_token %}
             <input type="text" name="gender" value="Both" />
             <button type="submit">
-              <img src="{% static '/images/other1.jpg' %}" alt="" />
+              <img src="../media/other1.jpg" alt="" />
             </button>
           </form>
         </div>
@@ -884,7 +884,7 @@
             <div class="upper">
               <input type="text" name="season" value="{{i}}" />
               <button type="submit">
-                <img src="../static/images/season_images/{{i}}.jpg" alt="img" />
+                <img src="../media/season_images/{{i}}.jpg" alt="img" />
               </button>
             </div>
             <div class="lower">

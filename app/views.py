@@ -73,6 +73,7 @@ def home(request):
     seasons = set()
     for i in products:
         seasons.add(i.season)
+        # print(i.season)
 
     seasons = list(seasons)
     seasons.sort()

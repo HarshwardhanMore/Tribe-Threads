@@ -52,7 +52,7 @@ def home(request):
         superCategoriesDictList.append(
             {"name": i, "imageName": obj[0].imageName})
 
-    print(superCategoriesDictList)
+    # print(superCategoriesDictList)
 
     brands = set()
     for i in products:
@@ -66,9 +66,9 @@ def home(request):
         obj = Database.objects.filter(brandName=i)
         brandsDictList.append(
             {"brandName": i, "brandImageName": obj[0].imageName})
-        print(i)
+        # print(i)
 
-    print(brandsDictList)
+    # print(brandsDictList)
 
     seasons = set()
     for i in products:
@@ -76,7 +76,7 @@ def home(request):
 
     seasons = list(seasons)
     seasons.sort()
-    print(seasons)
+    # print(seasons)
     # seasonsDictList = []
 
     # for i in seasons:
@@ -247,8 +247,8 @@ def shop(request):
 
     # user_id = hex(uuid.getnode())
     user_id = request.user
-    print("==>")
-    print(request.user)
+    # print("==>")
+    # print(request.user)
     user_id = str(request.user)
     wishlist = '[]'
     cart = '[]'
@@ -305,7 +305,7 @@ def shop(request):
             # From List To String
             wishlist = json.dumps(wishlist)
 
-            print("DONE")
+            # print("DONE")
 
         else:
             user_id = user_id
@@ -328,7 +328,7 @@ def shop(request):
             wishlist = json.dumps(wishlist)
             cart = json.dumps(cart)
 
-            print("DONE")
+            # print("DONE")
 
         obj.delete()
         obj = UserSpace.objects.create(
@@ -450,7 +450,7 @@ def wishlist(request):
                 # From List To String
                 wishlist = json.dumps(wishlist)
 
-                print("DONE")
+                # print("DONE")
 
             else:
                 user_id = user_id
@@ -472,7 +472,7 @@ def wishlist(request):
                 # From List To String
                 wishlist = json.dumps(wishlist)
 
-                print("DONE")
+                # print("DONE")
 
             obj.delete()
             obj = UserSpace.objects.create(
@@ -559,7 +559,7 @@ def wishlist(request):
 
 @ login_required(login_url='login')
 def cart(request):
-    print("+++++++++++++++++++++++++++")
+    # print("+++++++++++++++++++++++++++")
 
     user_id = request.user
     cart = '[]'
@@ -601,8 +601,8 @@ def cart(request):
 
                     item = product_id
 
-                    print("PRODUCT ID : ")
-                    print(product_id)
+                    # print("PRODUCT ID : ")
+                    # print(product_id)
 
                     if item not in cart:
                         cart.append(item)
@@ -612,7 +612,7 @@ def cart(request):
                     # From List To String
                     cart = json.dumps(cart)
 
-                    print("DONE")
+                    # print("DONE")
                 else:
 
                     # item = {"product_id": product_id, "image_name": product.imageName, "brand": product.brandName,
@@ -624,7 +624,7 @@ def cart(request):
                     # From List To String
                     cart = json.dumps(cart)
 
-                    print("DONE INSIDE CART")
+                    # print("DONE INSIDE CART")
 
             else:
                 user_id = user_id
@@ -646,7 +646,7 @@ def cart(request):
                 # From List To String
                 cart = json.dumps(cart)
 
-                print("DONE INSIDE CART")
+                # print("DONE INSIDE CART")
 
             obj.delete()
             obj = UserSpace.objects.create(
@@ -713,12 +713,12 @@ def cart(request):
     #         new_cart.append(
     #             {"product_id": my_obj.product_id, "product_title": my_obj, "name": my_obj.name, "imageName": my_obj.imageName, "price": my_obj.price})
 
-    print(cart_products)
+    # print(cart_products)
 
     total = 0
     for i in cart_products:
         total += float(i.price)
-        print(i)
+        # print(i)
     # print(i[0])
 
     context = {
@@ -747,7 +747,7 @@ def categories(request):
         superCategoriesDictList.append(
             {"name": i, "imageName": obj[0].imageName})
 
-    print(superCategoriesDictList)
+    # print(superCategoriesDictList)
 
     brands = set()
     for i in products:
@@ -761,9 +761,9 @@ def categories(request):
         obj = Database.objects.filter(brandName=i)
         brandsDictList.append(
             {"brandName": i, "brandImageName": obj[0].imageName})
-        print(i)
+        # print(i)
 
-    print(brandsDictList)
+    # print(brandsDictList)
 
     seasons = set()
     for i in products:
@@ -771,7 +771,7 @@ def categories(request):
 
     seasons = list(seasons)
     seasons.sort()
-    print(seasons)
+    # print(seasons)
     # seasonsDictList = []
 
     # for i in seasons:

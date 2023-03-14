@@ -380,29 +380,50 @@ def shop(request):
 
     # # # # # # # # # # # # # # # # # # # # SEACH WORK ( any )
 
-    results = set()
+    products = []
     if (request.method == 'POST'):
         searchQuery = request.POST.get("searchQuery")
         if (searchQuery):
 
+            searchQuery = str(searchQuery).title()
+            searchQuery = searchQuery.replace(' ', '-')
+            searchQuery = searchQuery.replace('_', '-')
+            print(searchQuery)
+
             objects = Database.objects.filter(name=searchQuery)
             if(objects):
-                results.add(objects)
+                for i in objects:
+                    products.append(i)
             objects = Database.objects.filter(gender=searchQuery)
             if(objects):
-                results.add(objects)
+                for i in objects:
+                    products.append(i)
             objects = Database.objects.filter(description=searchQuery)
             if(objects):
-                results.add(objects)
+                for i in objects:
+                    products.append(i)
             objects = Database.objects.filter(superCategory=searchQuery)
             if(objects):
-                results.add(objects)
+                for i in objects:
+                    products.append(i)
             objects = Database.objects.filter(brandName=searchQuery)
             if(objects):
-                results.add(objects)
+                for i in objects:
+                    products.append(i)
             objects = Database.objects.filter(season=searchQuery)
             if(objects):
-                results.add(objects)
+                for i in objects:
+                    products.append(i)
+            objects = Database.objects.filter(color=searchQuery)
+            if(objects):
+                for i in objects:
+                    products.append(i)
+            
+            # print(products)
+            context = {
+                    'products': list(set(products)),
+                }
+            return render(request, 'shop.html', context=context)
 
     # # # # # # # # # # # # # # # # # # # # RENDER WORK
     products = []

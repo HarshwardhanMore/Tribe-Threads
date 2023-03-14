@@ -378,6 +378,32 @@ def shop(request):
         if (season):
             objects = Database.objects.filter(season=season)
 
+    # # # # # # # # # # # # # # # # # # # # SEACH WORK ( any )
+
+    results = set()
+    if (request.method == 'POST'):
+        searchQuery = request.POST.get("searchQuery")
+        if (searchQuery):
+
+            objects = Database.objects.filter(name=searchQuery)
+            if(objects):
+                results.add(objects)
+            objects = Database.objects.filter(gender=searchQuery)
+            if(objects):
+                results.add(objects)
+            objects = Database.objects.filter(description=searchQuery)
+            if(objects):
+                results.add(objects)
+            objects = Database.objects.filter(superCategory=searchQuery)
+            if(objects):
+                results.add(objects)
+            objects = Database.objects.filter(brandName=searchQuery)
+            if(objects):
+                results.add(objects)
+            objects = Database.objects.filter(season=searchQuery)
+            if(objects):
+                results.add(objects)
+
     # # # # # # # # # # # # # # # # # # # # RENDER WORK
     products = []
     for i in range(len(objects)):

@@ -912,13 +912,13 @@ def business_login(request):
         business_id = request.POST.get('business_id')
         business_password = request.POST.get('business_password')
 
-        return render(request, "seller.html")
+        if(Vendors.objects.filter(business_id=business_id, business_password=business_password)):
+            # return render(request, "seller.html")
+            return redirect("/seller")
 
     return render(request, "business_login.html")
 
 def business_logout(request):
-
-
 
     return render(request, "business_login.html")
 

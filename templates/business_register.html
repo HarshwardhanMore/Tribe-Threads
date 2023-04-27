@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business | Register</title>
+    <link rel="shortcut icon" href="../media/icon2.png" type="image/x-icon" />
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+          rel="stylesheet"
+        /> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Tinos&display=swap"
+          rel="stylesheet"
+        /> -->
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+          rel="stylesheet"
+        /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      html {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        /* height: 100vh; */
+        font-family: "Italiana", serif;
+        font-family: "Montserrat", sans-serif;
+
+        --col1: #ffefcd;
+        --col2: #a58e74;
+        --col3: #e09132;
+        --col4: #424530;
+        background: url("../media/login-logout.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+
+        background: url("../media/slider_images/businessBg.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* ******************************************************************* */
+
+      body .navbar {
+        height: 10%;
+        width: 100%;
+        /* background-color: grey; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* box-shadow: 3px 3px 10px 10px rgba(206, 206, 206, 0.185); */
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background: var(--col2);
+        background: rgba(0, 0, 0, 0.432);
+        color: var(--col1);
+        /* display: none; */
+        z-index: 100;
+      }
+      body .navbar .inner {
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      body .navbar .inner > * {
+      }
+      body .navbar .sec1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        height: 100%;
+        width: 30%;
+      }
+      body .navbar .sec1 .collection {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 50%;
+        font-size: 18px;
+        /* font-weight: bold; */
+      }
+      body .navbar .sec1 .collection > * {
+        text-decoration: none;
+        color: var(--col1);
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 5px 0px;
+      }
+      body .navbar .sec1 .collection > *:hover {
+        /* color: var(--col4); */
+        /* font-weight: bold; */
+        transition: all;
+        transition-duration: 0.5s;
+        border-bottom-color: var(--col1);
+      }
+      body .navbar .sec2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+      }
+      body .navbar .sec2 span {
+        /* color: #f25081; */
+      }
+      body .navbar .sec3 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: right;
+        height: 100%;
+        width: 30%;
+        /* border: 2px solid red; */
+      }
+      body .navbar .sec3 .search {
+        width: 65%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 50%;
+        margin-right: 30px;
+        /* border: 1px dashed var(--col1); */
+        border-bottom: 1px dashed var(--col1);
+
+        visibility: hidden;
+      }
+      body .navbar .sec3 .search > input {
+        width: 85%;
+        background: transparent;
+        color: var(--col1);
+        padding-left: 10px;
+        border: 0px;
+        font-family: "Montserrat", sans-serif;
+      }
+      body .navbar .sec3 .search > input::placeholder {
+        color: var(--col1);
+        font-family: "Montserrat", sans-serif;
+      }
+      body .navbar .sec3 .search > input:focus {
+        outline: none;
+      }
+      body .navbar .sec3 .search > button {
+        width: 15%;
+        border: 0px;
+        background: transparent;
+        color: var(--col1);
+        height: 100%;
+        font-weight: bold;
+        /* border-left: 1px dashed var(--col1); */
+      }
+      body .navbar .sec3 .collection {
+        width: 35%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 60%;
+      }
+      body .navbar > * img {
+        height: 70%;
+      }
+
+      /* ******************************************************************* */
+
+      .intro {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .intro .content {
+        font-size: 40px;
+        font-weight: bolder;
+        color: var(--col1);
+        text-shadow: 3px 3px 5px var(--col2);
+      }
+      .body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main {
+        width: 70%;
+        height: 80%;
+        background: var(--col2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--col1);
+        border-radius: 10px;
+        /* box-shadow: 15px 15px 20px var(--col1); */
+        /* -webkit-box-shadow: 0 0 10px #fff;
+        box-shadow: 0 0 70px var(--col2); */
+        background: #ffefcdab;
+        backdrop-filter: blur(10px);
+      }
+      .main .heading {
+        height: 20%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid var(--col2);
+      }
+      .main form {
+        height: 70%;
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow-y: hidden;
+      }
+      .main form > * {
+        width: 45%;
+        height: 100%;
+
+        overflow-y: scroll;
+      }
+      .main form > * > * {
+        margin: 5% 0px;
+      }
+      .main form .inputgrp {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+      }
+      .main form .checkgrp {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      .main form .checkgrp > * {
+        /* width: auto; */
+        height: max-content;
+        width: max-content;
+      }
+      /* .main form .checkgrp label {
+        width: 90%;
+        border: 2px solid red;
+      } */
+      .main form .checkgrp input {
+        /* width: 10%;
+        border: 2px solid red; */
+        margin-right: 30px;
+      }
+      /* .main form .inputgrp > * {
+        margin: 2px 0px;
+      } */
+      .main form .inputgrp input,
+      textarea {
+        width: 95%;
+        border: 1px solid var(--col4);
+        border-bottom: 2px solid var(--col4);
+        background: var(--col1);
+        border-radius: 4px;
+        padding: 9px 7px;
+        font-size: 15px;
+        color: var(--col4);
+        background: transparent;
+        font-family: "Montserrat", sans-serif;
+      }
+      .main form .inputgrp input:focus {
+        border-color: var(--col3);
+      }
+      ::-webkit-input-placeholder {
+        /* padding: 9px 7px; */
+        font-size: 15px;
+        color: var(--col2);
+        font-family: "Montserrat", sans-serif;
+      }
+      textarea:focus,
+      input:focus {
+        outline: none;
+      }
+
+      .main form .btngrp {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        /* justify-content: space-evenly; */
+        align-items: center;
+        width: 100%;
+      }
+      .main form .btngrp > * {
+        /* background: var(--col3);
+        margin: 0px 20%;
+        padding: 5px 8px;
+        display: block;
+        width: 30%; */
+        /* margin: 0px 20%; */
+        padding: 7px 15px;
+        display: block;
+        background: var(--col4);
+        border: 2px solid transparent;
+        border-radius: 5px;
+        font-size: 15px;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .main form .btngrp button {
+        color: var(--col1);
+        font-weight: bold;
+      }
+      .main form .btngrp button:hover {
+        color: var(--col1);
+        background: var(--col3);
+        font-weight: bold;
+        transition: all;
+        transition-duration: 0.2s;
+      }
+      .main .inputgrp2 {
+        height: 10%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .main form .inputgrp2 a {
+        display: inline;
+        color: var(--col4);
+      }
+      .main form .inputgrp2 a:hover {
+        color: var(--col3);
+      }
+      /* .main > form .btngrp a {
+        border-color: var(--col4);
+        background: var(--col1);
+        color: var(--col4);
+      }
+      .main > form .btngrp a:hover {
+        border-color: var(--col3);
+        background: var(--col1);
+        color: var(--col3);
+        transition: all;
+        transition-duration: 0.2s;
+      } */
+
+      #horizontal {
+        font-weight: bold;
+        color: var(--col1);
+        background: var(--col4);
+        width: 100%;
+        text-align: right;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+      }
+      #horizontal .msg span {
+        color: var(--col3);
+      }
+      #horizontal a {
+        color: var(--col3);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <div class="bs">
+        <nav style="background-color: #FF0018;" class="navbar navbar-expand-md navbar-dark fixed-top">
+            <image src="/static/Blood.PNG" fill="none" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-10 h-10 text-white p-1 bg-white rounded-full" viewBox="0 0 24 24">
+                </svg>
+                <a href="/" class="navbar-brand">&nbsp;&nbsp;Tribe Threads</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: white;" href="../admin/login"><i class="fas fa-user-shield"></i>&nbsp; Admin</i></a>
+                        </li>
+
+                    </ul>
+                </div>
+        </nav>
+    </div> -->
+
+    <div class="navbar">
+      <div class="inner">
+        <div class="sec1">
+          <div class="collection">
+            <a href="./home">Home</a>
+            <a href="./shop">Shop</a>
+            <!-- <a href="./categories">Categories</a> -->
+            <a href="./business_register">Business</a>
+          </div>
+        </div>
+
+        <!-- Kultura Apparel
+              EthnoChic
+              Cultural Couture
+              Heritage Style Co.
+              Global Glam
+              Tribe Threads
+              Sari & Silk
+              Fusion Fashion
+              Afrocentric Attire
+              Folklore Fashion -->
+        <div class="sec2"><span></span>Tribe Threads</div>
+
+        <div class="sec3">
+          <!-- <a href="shop">Shop</a> -->
+          <form action="shop" method="post" class="search">
+            {% csrf_token %}
+            <input
+              name="searchQuery"
+              id="searchQuery"
+              type="text"
+              placeholder="Search Here!"
+            />
+            <button type="submit">
+              <img
+                src="https://img.icons8.com/material-sharp/48/ffefcd/right--v1.png"
+              />
+            </button>
+          </form>
+          <div class="collection">
+            <a href="wishlist"
+              ><img
+                src="https://img.icons8.com/sf-regular-filled/96/ffefcd/hearts.png"
+            /></a>
+            <a href="cart"
+              ><img
+                src="https://img.icons8.com/sf-black-filled/64/ffefcd/shopping-cart.png"
+            /></a>
+            <a href="profile"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/ffefcd/user-male-circle.png"
+            /></a>
+
+            <!-- <a href="wishlist"
+              ><img
+                src="https://img.icons8.com/material-rounded/48/7b5124/hearts.png"
+            /></a>
+            <a href="cart"
+              ><img
+                src="https://img.icons8.com/sf-black-filled/64/7b5124/shopping-cart.png"
+            /></a>
+            <a href="#"
+              ><img
+                src="https://img.icons8.com/ios-filled/50/7b5124/user-male-circle.png"
+            /></a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="intro">
+      <div class="content">
+        Be a Part of Tribe Threads by Registering Business
+      </div>
+    </div>
+    <div class="body">
+      <div class="main">
+        <div class="heading">Register Business</div>
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="part1">
+            <div class="inputgrp">
+              <label for="username">Username</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Eg. user"
+                required
+                value="{{request.user.username}}"
+                readonly
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="business_name">Business Name</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="business_name"
+                id="business_name"
+                required
+                placeholder="E.g. Zudio"
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="first_name">First Name</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="first_name"
+                id="first_name"
+                required
+                value="{{request.user.first_name}}"
+                readonly
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="last_name">Last Name</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="last_name"
+                id="last_name"
+                required
+                value="{{request.user.last_name}}"
+                readonly
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="primary_email">Primary Email</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="primary_email"
+                id="primary_email"
+                placeholder="Eg. user@gmail.com"
+                required
+                value="{{request.user.email}}"
+                readonly
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="secondary_email">Secondary Email</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="secondary_email"
+                id="secondary_email"
+                placeholder="Eg. user@gmail.com"
+                required
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="phone_number">Phone Number</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="phone_number"
+                id="phone_number"
+                placeholder="Eg. 9822608159"
+                required
+              />
+            </div>
+            <!-- <div class="inputgrp">
+            <label for="password">Password (Important)</label>
+            <input
+              autocomplete="off"
+              type="text"
+              name="password"
+              id="password"
+              placeholder="Eg. pass@123"
+              required
+            />
+          </div> -->
+          </div>
+
+          <div class="part2">
+            <div class="inputgrp">
+              <label for="state">State</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="state"
+                id="state"
+                placeholder="Eg. Maharashtra"
+                required
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="district">District</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="district"
+                id="district"
+                placeholder="Eg. Pune"
+                required
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="city">City</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="city"
+                id="city"
+                placeholder="Eg. Pune"
+                required
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="pincode">Pincode</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="pincode"
+                id="pincode"
+                placeholder="Eg. 413304"
+                required
+              />
+            </div>
+            <div class="inputgrp">
+              <label for="address">Shop Address</label>
+              <!-- <input /> -->
+              <textarea
+                autocomplete="off"
+                type="text"
+                name="address"
+                id="address"
+                placeholder="Eg. V.I.T, Pune"
+                required
+                value="{{request.user.username}}"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+
+            <div class="inputgrp">
+              <label for="business_phone_number">Business Phone Number</label>
+              <input
+                autocomplete="off"
+                type="text"
+                name="business_phone_number"
+                id="business_phone_number"
+                placeholder="Eg. 123456"
+                required
+              />
+            </div>
+            <div class="inputgrp checkgrp">
+              <div class="part1">
+                <input type="checkbox" id="checkMailMsg" />
+              </div>
+              <div class="part2">
+                <label for="checkMailMsg"
+                  >After Successful Registration, Mail about Shop ID and Shop
+                  Password will be shared</label
+                >
+              </div>
+            </div>
+
+            <!-- <div class="inputgrp">
+            <label for="password">Enter Password</label>
+            <input
+              autocomplete="off"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Eg. Pass@123"
+              required
+            />
+          </div> -->
+            <div class="btngrp">
+              <button id="registerBusiness" type="submit">Register</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="inputgrp2">
+          <p>
+            Don't have an Account?
+            <a href="business_login">Sign Up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="horizontal">
+      <div class="msg">Made with <span> ♥ </span> by Harshwardhan More</div>
+      <div>
+        <span> LinkedIn/</span
+        ><a href="https://www.linkedin.com/in/HarshwardhanMore/">
+          HarshwardhanMore</a
+        >
+        &nbsp;&nbsp;
+        <span> Github/</span>
+        <a href="https://github.com/HarshwardhanMore"> HarshwardhanMore</a>
+      </div>
+    </div> -->
+    <script>
+      // document
+      //   .getElementById("registerBusiness")
+      //   .addEventListener("click", () => {
+      //     confirm(
+      //       "Check Registered Primary Mail for Business Id and Passwords."
+      //     );
+      //   });
+    </script>
+  </body>
+</html>

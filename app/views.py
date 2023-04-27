@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Database
 from .models import UserSpace
-from .models import UserSpace
+from .models import Vendors
+from .models import VendorItems
 
 from django.contrib.auth.models import User
 # Create your views here.
@@ -11,6 +12,9 @@ from numpy import random
 import uuid
 
 import simplejson as json
+
+
+import smtplib
 
 
 #
@@ -91,64 +95,28 @@ def home(request):
 
     # print(seasonsDictList)
 
+    vendors = Vendors.objects.all()
+    print(vendors)
+    vendors_list = []
+    for i in vendors:
+        if(i):
+            # obj = {
+            #     "business_id" : i.business_id,
+            #     "business_name" : i.business_name
+            # }
+            # vendors_list.append(obj)
+            vendors_list.append(i)
+    vendors_list = list(set(vendors_list))
+    
+
     context = {
         "superCategoriesDictList": superCategoriesDictList,
         "brandsDictList": brandsDictList,
         "seasons": seasons,
+        "vendors_list": vendors_list,
     }
 
     return render(request, 'index.html', context=context)
-
-
-@ login_required(login_url='login')
-def seller(request):
-    if (request.method == 'POST'):
-
-        name = request.POST.get('name')
-        gender = request.POST.get('gender')
-        price = request.POST.get('price')
-        description = request.POST.get('description')
-        superCategory = request.POST.get('supercategory')
-
-        subCategories = request.POST.get('supercategory')
-        # subCategories = subCategories.split(' ')
-
-        color = request.POST.get('color')
-        brandName = request.POST.get('brandname')
-
-        availableSize = request.POST.get('availablesize')
-        # availableSize = availableSize.split(' ')
-
-        age = request.POST.get('age')
-        season = request.POST.get('season')
-
-        image = request.FILES.get('image')
-        imageName = 'default'
-        if (image):
-            imageName = image.name
-
-        database = Database.objects.create(name=name,
-                                           gender=gender,
-                                           price=price,
-                                           description=description,
-                                           superCategory=superCategory,
-                                           subCategories=subCategories,
-                                           color=color,
-                                           brandName=brandName,
-                                           availableSize=availableSize,
-                                           age=age,
-                                           season=season,
-                                           image=image,
-                                           imageName=imageName,
-                                           product_id=brandName + "_" + color +
-                                           "_" + name + "_" +
-                                           str(random.rand())
-                                           )
-        database.save()
-        return render(request, 'seller.html')
-
-    return render(request, 'seller.html')
-
 
 # def shop(request):
 
@@ -377,6 +345,20 @@ def shop(request):
         season = request.POST.get("season")
         if (season):
             objects = Database.objects.filter(season=season)
+            objects = Database.objects.filter(brandName=brandName)
+
+    # # # # # # # # # # # # # # # # # # # # FILTER WORK ( shops )
+
+    if (request.method == 'POST'):
+        business_id = request.POST.get("business_id")
+        if (business_id):
+            objects = VendorItems.objects.filter(business_id=business_id)
+            print("objects : ")
+            print(objects)
+            items = []
+            for i in objects:
+                print("i : ")
+                print(i)
 
     # # # # # # # # # # # # # # # # # # # # SEACH WORK ( any )
 
@@ -916,3 +898,180 @@ def registerpage(request):
         return render(request, 'register.html', context)
 
 # ##############################
+
+
+
+
+
+
+
+
+def business_login(request):
+
+    if request.method == "POST":        
+        business_id = request.POST.get('business_id')
+        business_password = request.POST.get('business_password')
+
+        return render(request, "seller.html")
+
+    return render(request, "business_login.html")
+
+def business_logout(request):
+
+
+
+    return render(request, "business_login.html")
+
+def business_register(request):
+
+    if request.method == "POST":
+        
+        username = request.POST.get('username')
+        business_name = request.POST.get('business_name')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        primary_email = request.POST.get('primary_email')
+        secondary_email = request.POST.get('secondary_email')
+        phone_number = request.POST.get('phone_number')
+        # password = request.POST.get('password')
+        
+        
+        state = request.POST.get('state')
+        district = request.POST.get('district')
+        city = request.POST.get('city')
+        pincode = request.POST.get('pincode')
+        address = request.POST.get('address')
+        business_phone_number = request.POST.get('business_phone_number')
+
+
+        business_id = str(username) + "_" + str(random.randint(100000, 999999))
+        business_password = str(business_phone_number) + "_" + str(random.randint(100000, 999999))
+
+
+        vendor = Vendors(
+            username=username,
+            business_name=business_name,
+            first_name=first_name,
+            last_name=last_name,
+            primary_email=primary_email,
+            secondary_email=secondary_email,
+            phone_number=phone_number,
+
+            state=state,
+            district=district,
+            city=city,
+            pincode=pincode,
+            address=address,
+            business_phone_number=business_phone_number,
+
+            business_id=business_id,
+            business_password=business_password
+        )
+        vendor.save()
+
+
+
+        # message = "hello world"
+        # message = f"Business Id : {str(username)} and Business Password : {str(password)}"
+        message = "\nBusiness Id : " + str(business_id) + "\nBusiness Password : "  + str(business_password)
+
+        s = smtplib.SMTP('smtp.gmail.com', 587)
+        s.starttls()
+        
+        s.login("tribethreadsofficial@gmail.com", "qumifibzdhcgvzyb")
+
+        s.sendmail("tribethreadsofficial@gmail.com", str(primary_email), str(message))
+        s.sendmail("tribethreadsofficial@gmail.com", str(secondary_email), str(message))
+        print("mail sent!")
+        
+        s.quit()
+
+
+        return redirect("business_login")
+    
+
+    return render(request, "business_register.html")
+
+
+
+
+@ login_required(login_url='login')
+def seller(request):
+    if (request.method == 'POST'):
+
+        business_id = request.POST.get('business_id')
+        name = request.POST.get('name')
+        gender = request.POST.get('gender')
+        price = request.POST.get('price')
+        description = request.POST.get('description')
+        superCategory = request.POST.get('supercategory')
+
+        subCategories = request.POST.get('supercategory')
+        # subCategories = subCategories.split(' ')
+
+        color = request.POST.get('color')
+        brandName = request.POST.get('brandname')
+
+        availableSize = request.POST.get('availablesize')
+        # availableSize = availableSize.split(' ')
+
+        age = request.POST.get('age')
+        season = request.POST.get('season')
+
+        image = request.FILES.get('image')
+        imageName = 'default'
+        if (image):
+            imageName = image.name
+
+        product_id = brandName + "_" + color + "_" + name + "_" + str(random.rand())
+
+        database = Database.objects.create(name=name,
+                                           gender=gender,
+                                           price=price,
+                                           description=description,
+                                           superCategory=superCategory,
+                                           subCategories=subCategories,
+                                           color=color,
+                                           brandName=brandName,
+                                           availableSize=availableSize,
+                                           age=age,
+                                           season=season,
+                                           image=image,
+                                           imageName=imageName,
+                                           product_id=product_id
+                                           )
+        database.save()
+
+        vendor_item = VendorItems(business_id=business_id, product_id=product_id)
+        vendor_item.save()
+
+        # vendor_items = VendorItems.objects.filter(business_id=business_id)
+        # if(vendor_items):
+        #     jsonDec = json.decoder.JSONDecoder()
+
+        #     items = vendor_items[0].items
+        #     items = jsonDec.decode(items)
+        #     items.append(product_id)
+        #     items = json.dumps(items)
+
+        #     print(" INSIDE ")
+
+        #     vendor_items.delete()
+
+        #     vendor_items2 = VendorItems(business_id=business_id, items=items)
+        #     vendor_items2.save()
+        # else:
+        #     items = [product_id]
+        #     items = json.dumps(items)
+        #     vendor_items = VendorItems(business_id=business_id, items=items)
+        #     vendor_items.save()
+
+        
+        # jsonDec = json.decoder.JSONDecoder()
+        # cart = jsonDec.decode(cart)
+        # cart = json.dumps(cart)
+
+        return render(request, 'seller.html')
+
+    return render(request, 'seller.html')
+

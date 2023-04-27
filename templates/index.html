@@ -545,6 +545,113 @@
 
       /*  */
 
+      .main > .business {
+        background: var(--col1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        /* border: 2px solid red; */
+        /* background: var(--col3); */
+        padding-top: 0px;
+      }
+      .main > .business .heading {
+        width: 80%;
+        height: auto;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        padding: 0% 0% 2% 0px;
+        color: var(--col4);
+      }
+      .main > .business .content {
+        /* height: 90%; */
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 0px;
+        column-gap: 0px;
+      }
+      .main > .business .content > * {
+        width: 100%;
+        height: 100%;
+        justify-items: center;
+        /* border: 2px solid var(--col2); */
+      }
+      .main > .business .content input {
+        display: none;
+      }
+      .main > .business .content button {
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        /* border-top: 5px solid var(--col1);
+        border-left: 5px solid var(--col1);
+        border-right: 5px solid var(--col1);
+        border-bottom: none; */
+        border: 5px solid transparent;
+        border-right: 5px solid var(--col3);
+        background: var(--col3);
+        color: var(--col1);
+        width: 100%;
+        height: 20vh;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .main > .business .content button:hover {
+        /* border-color: var(--col3); */
+        background: var(--col1);
+        color: var(--col3);
+        border-color: var(--col3);
+        transition: all;
+        transition-duration: 0.4s;
+      }
+      .main > .business .content .lower {
+        visibility: hidden;
+        background: var(--col3);
+        color: var(--col1);
+      }
+      .main > .business .content .season:hover .lower {
+        visibility: visible;
+        transition: all;
+        transition-duration: 0.4s;
+      }
+      .main > .business .content img {
+        /* height: 100%; */
+        width: 100%;
+        align-self: center;
+        z-index: -1;
+      }
+      .main > .business .content img:hover {
+        transform: scale(1.05);
+        transition: all;
+        transition-duration: 0.4s;
+      }
+      .main > .business .content .upper {
+        overflow: hidden;
+      }
+      .main > .business .content .superCategoryName {
+        font-weight: bold;
+        /* color: var(--col1); */
+        font-size: 20px;
+        text-align: center;
+        /* padding: 5px 0px; */
+        /* background: transparent; */
+      }
+
+      /*  */
+
+      /*  */
+
+      /*  */
+
       .main > .seasons {
         background: var(--col1);
         display: flex;
@@ -715,7 +822,7 @@
             <a href="./home">Home</a>
             <a href="./shop">Shop</a>
             <!-- <a href="./categories">Categories</a> -->
-            <a href="./seller">Business</a>
+            <a href="./business_login">Business</a>
           </div>
         </div>
 
@@ -989,6 +1096,24 @@
             </div>
             <div class="lower">
               <div class="superCategoryName">{{i}}</div>
+            </div>
+          </form>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="business">
+        <div class="heading">Businesses</div>
+        <div class="content">
+          {% for i in vendors_list %}
+          <form class="business" action="shop" method="post">
+            {% csrf_token %}
+            <div class="upper">
+              <input type="text" name="business_id" value="{{i.business_id}}" />
+              <button type="submit">
+                <!-- <img src="../media/season_images/{{i}}.jpg" alt="img" /> -->
+                {{i.business_name}}
+              </button>
             </div>
           </form>
           {% endfor %}

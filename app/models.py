@@ -8,7 +8,47 @@ import datetime
 # Create your models here.
 
 
+
+
+# ###################### BUSINESS
+
+
+class Vendors(models.Model):    
+    
+    username = models.CharField(max_length=50)
+    business_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    primary_email = models.CharField(max_length=50)
+    secondary_email = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=10)
+    # password = models.CharField(max_length=50)    
+    
+    state = models.CharField(max_length=50)
+    district = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    pincode = models.CharField(max_length=6)
+    address = models.TextField()
+    business_phone_number = models.CharField(max_length=10)
+
+
+    business_id = models.CharField(max_length=60, primary_key=True)
+    business_password = models.CharField(max_length=60)
+
+    def __str__(self):
+        return self.first_name + "_" + self.last_name + "_" + self.phone_number
+    
+class VendorItems(models.Model):
+    business_id = models.CharField(max_length=60)
+    product_id = models.CharField(max_length=60)
+    # items = models.TextField(default='[]')
+    def __str__(self):
+        return self.business_id
+
 class Database(models.Model):
+
+    # business_id = models.ForeignKey("", verbose_name=_(""), on_delete=models.CASCADE)
+
     name = models.CharField(max_length=50)
     gender = models.CharField(max_length=10)
     price = models.CharField(max_length=50)
@@ -41,6 +81,8 @@ class Database(models.Model):
     # + ' of sizes ' + '-'.join([str(elem) for elem in self.availableSize]) + ' ( ' + self.superCategory + ' ) '
 
 
+# ###################### CUSTOMER
+
 class UserSpace(models.Model):
     user_id = models.CharField(max_length=50)
     wishlist = models.TextField()
@@ -48,6 +90,24 @@ class UserSpace(models.Model):
 
     def __str__(self):
         return self.user_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # ###################### LOGIN

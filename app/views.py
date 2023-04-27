@@ -754,6 +754,10 @@ def cart(request):
         # print(i)
     # print(i[0])
 
+    # print(products)
+    print(cart_products)
+    print(total)
+
     context = {
         'products': products,
         'cart': cart,

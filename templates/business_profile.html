@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tribe Threads | Shop</title>
+    <title>Tribe Threads | Profile</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -155,186 +155,109 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        height: 70%;
+        height: 65%;
       }
       body .navbar > * img {
         height: 80%;
       }
       body .main {
-        height: 90%;
+        height: 80%;
         width: 80%;
         margin-top: 5%;
+        /* overflow-y: scroll;s */
+        display: flex;
+        flex-direction: column;
       }
-      body .main > .mycards {
-        width: 100%;
-        display: grid;
-        /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: minmax(100px, auto);
-        /* gap: 4% 4%; */
-        column-gap: 60px;
-        row-gap: 50px;
-      }
-      body .main > .mycards > * {
-        /* border: 2px solid red; */
-        align-self: center;
-      }
-      body .main > .mycards .mycard {
+      body .main .table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: var(--col4);
       }
-      body .main > .mycards > .mycard .itemPic {
-        width: 100%;
-        border-radius: 100%;
-        border-radius: 3px;
-        margin-bottom: 5px;
-      }
-      body .main > .mycards > .mycard .data {
-        margin: 5px 0px;
-        width: 90%;
-      }
-      body .main > .mycards > .mycard #itemName {
-        font-weight: bold;
-        font-size: 18px;
-      }
-      body .main > .mycards > .mycard #itemDesc {
-        font-size: 15px;
-      }
-      body .main > .mycards > .mycard #itemPrice {
-        font-weight: bold;
-        font-size: 15px;
-        color: var(--col3);
-      }
-      body .main > .mycards > .mycard input {
-        display: none;
-      }
-      body .main > .mycards > .mycard .btns {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        /* height: ; */
-        width: 90%;
-      }
-      body .main > .mycards > .mycard .btns > * {
-        width: 100%;
-        height: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 5px 0px;
-      }
-      body .main > .mycards > .mycard .btns button {
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        border-radius: 2px;
-        border: 1px solid #a58e7475;
+      body .main .table .row {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        /* padding: 5px 0px; */
-        padding: 5px 0px;
-        cursor: pointer;
+        width: 100%;
+        height: 10vh;
 
-        font-family: "Montserrat", serif;
-      }
-      body .main > .mycards > .mycard .btns button:hover {
-        /* border-color: #a58e74; */
-        border-color: var(--col4);
-
-        transition: all;
-        transition-duration: 0.5s;
-        /* background: rgb(49, 148, 230); */
-        /* color: white; */
-        /* <img src="https://img.icons8.com/sf-ultralight/50/000000/hearts.png"/> */
-      }
-      body .main > .mycards > .mycard .btns button img {
-        width: 25px;
-      }
-
-      /* .toastForWishlist {
-        position: fixed;
-        top: 0%;
-        left: 0%;
-        z-index: 1000;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.548);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .toastForWishlist .toast {
-        width: auto;
-        height: 15%;
+        border-bottom: 2px solid var(--col2);
         background: var(--col1);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 7px;
-        overflow: hidden;
-      }
-      .toastForWishlist .toast .btns {
-        height: 30%;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: center;
-      }
-      .toastForWishlist .toast .btns .wishlist {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
         color: var(--col4);
-        padding: 5px 0px;
-        color: var(--col1);
-        background: var(--col4);
       }
-      .toastForWishlist .toast .btns .close {
+      /* body .main .table .row:hover {
+          background: var(--col2);
+          color: var(--col1);
+        } */
+      body .main .table .row > * {
         width: 50%;
-        height: 100%;
-        background: rgb(247, 90, 90);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
+      }
+      body .main .table .row a {
+        padding: 3px 10px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 15px;
+        background: var(--col1);
+        color: var(--col3);
+        border: 1px solid var(--col3);
+      }
+
+      body .main .table .row a:hover {
         background: var(--col3);
         color: var(--col1);
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 5px 0px;
-        cursor: pointer;
+        border-color: var(--col3);
+        transition: all;
+        transition-duration: 0.2s;
       }
-      .toastForWishlist .toast .msg {
-        height: 70%;
-        width: 100%;
+      body .main .table .row .col1 {
+        /* font-weight: bold;
+        border-bottom: 2px solid var(--col2);
+        background: var(--col1);
+        color: var(--col4); */
+        /* border-left: 2px solid var(--col2); */
+      }
+      body .main .table .row .col2 {
+        /* background: var(--col1);
+        color: var(--col4);
+        border-bottom: 2px solid var(--col2); */
+      }
+      body .main .heading {
+        /* text-align: center; */
+        font-size: 40px;
+        font-weight: 550;
+        font-family: "Italiana", serif;
+        letter-spacing: 1px;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        padding: 0px 20px;
-      } */
+        padding: 2% 0px;
+        border-bottom: 2px solid var(--col2);
+      }
+      body .main .actions {
+        padding: 3% 0px;
+      }
+      body .main .actions a {
+        padding: 10px 20px;
+        font-weight: bold;
+        background: var(--col3);
+        color: var(--col1);
+        border: 2px solid var(--col3);
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 17px;
+      }
+      body .main .actions a:hover {
+        background: var(--col1);
+        color: var(--col3);
 
-      /* @media screen and (min-width: 800px) and (max-width: 1650px) {
-        body {
-          background: green;
-        }
-      } */
-
-      button {
-        font-family: "Montserrat", serif;
+        transition: all;
+        transition-duration: 0.2s;
       }
 
       #horizontal {
@@ -393,70 +316,47 @@
     </div>
 
     <div class="main">
-      <br /><br />
-      {% if productNotFoundMsg %}
-      <h2>The item you are looking for is not available.</h2>
-      {% endif %}
-      <div class="mycards">
-        {% for i in products %}
-        <div class="mycard">
-          <img
-            class="itemPic"
-            src="../media/productImages/{{i.imageName}}"
-            alt=""
-            aria-grabbed="false"
-          />
-          <div class="data">
-            <div id="itemName">{{i.name}}</div>
-            <div id="itemDesc">{{i}}</div>
-            <div id="itemPrice">₹ {{i.price}}</div>
-          </div>
-
-          <div class="btns">
-            <form id="cartArea" action="cart" method="post">
-              {% csrf_token %}
-              <input
-                type="text"
-                name="addToCart"
-                id="addToCart"
-                value="{{i.product_id}}"
-              />
-              <button
-                onclick="alert('Do you want to add this item to cart?\n It will redirect ou to the cart.')"
-                id="cartBtn"
-                type="submit"
-              >
-                <img
-                  src="https://img.icons8.com/external-anggara-detail-outline-anggara-putra/48/null/external-add-to-cart-retail-anggara-detail-outline-anggara-putra.png"
-                />
-                &nbsp; ADD TO CART
-              </button>
-            </form>
-
-            <form action="" method="post" id="items_to_wishlist_cart">
-              {% csrf_token %}
-              <!-- <div class="quantity"> -->
-              <input
-                type="text"
-                id="product_id"
-                name="product_id"
-                value="{{i.product_id}}"
-              />
-              <input type="text" id="quantity" name="quantity" value="1" />
-              <button
-                onclick="alert('Do you want to add this item to wishlist?')"
-                id="wishlistBtn"
-                type="submit"
-              >
-                <img
-                  src="https://img.icons8.com/sf-ultralight/50/null/hearts.png"
-                />&nbsp; WISHLIST
-              </button>
-              <!-- </div> -->
-            </form>
+      <div class="heading">Profile</div>
+      <div class="table">
+        <div class="row">
+          <div class="col1">Username</div>
+          <div class="col2">{{me.username}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">First name</div>
+          <div class="col2">{{me.first_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Last name</div>
+          <div class="col2">{{me.last_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Signup Date</div>
+          <div class="col2"></div>
+        </div>
+        <div class="row">
+          <div class="col1">Past Orders</div>
+          <div class="col2">0</div>
+        </div>
+        <div class="row">
+          <div class="col1">Total Purchase History</div>
+          <div class="col2">₹ 0</div>
+        </div>
+        <div class="row">
+          <div class="col1">Total items in Wishlist</div>
+          <div class="col2">
+            {{wishlist_len}} &nbsp;&nbsp;<a href="wishlist">View</a>
           </div>
         </div>
-        {% endfor %}
+        <div class="row">
+          <div class="col1">Total items in Cart</div>
+          <div class="col2">
+            {{cart_len}} &nbsp;&nbsp;<a href="cart">View</a>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="logout" onclick="confirm('are you sure to logout?')">Logout</a>
       </div>
     </div>
 

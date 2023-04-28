@@ -22,5 +22,6 @@ urlpatterns = [
     path("business_login", views.business_login, name="business_login"),
     path("business_logout", views.business_logout, name="business_logout"),
     path("business_register", views.business_register, name="business_register"),
+    path("business_profile", views.business_profile, name="business_profile"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -198,7 +198,7 @@
       /* ******************************************************************* */
       .main {
         width: 25%;
-        height: 60%;
+        height: 70%;
         background: var(--col2);
         display: flex;
         flex-direction: column;
@@ -212,7 +212,7 @@
         backdrop-filter: blur(10px);
       }
       .main > .heading {
-        height: 30%;
+        height: 25%;
         width: 90%;
         display: flex;
         justify-content: center;
@@ -229,7 +229,7 @@
         border-bottom: 2px solid var(--col2);
       }
       .main > form {
-        height: 70%;
+        height: 75%;
         width: 90%;
         display: flex;
         flex-direction: column;
@@ -352,6 +352,16 @@
       #horizontal a {
         color: var(--col3);
       }
+
+      .inputgrp2 > a,button{
+        background: transparent;
+        border: 0px;
+        cursor: pointer;
+        color: var(--col4);
+        font-size: 16px;
+        text-decoration: underline;
+        font-family: "Montserrat", sans-serif;
+      }
     </style>
   </head>
 
@@ -449,6 +459,24 @@
     <div class="main">
       <div class="heading">Business Login</div>
       <form method="POST" action="">
+
+      
+      <div>
+        {% if businessIdNotFound %}
+        <p>
+          Business Id Not Found, Please Try again or
+          <a href="./business_register"> Register </a> for new Business Id Here.
+        </p>
+        {% endif %}
+      </div>
+      <div>
+        {% if mailSent %}
+        <p>
+          Business Id and Business Password is sent to Registred Primary Email Address via Gmail.
+        </p>
+        {% endif %}
+      </div>
+
         {% csrf_token %}
         <div class="inputgrp">
           <label for="business_id">Business ID</label>
@@ -458,7 +486,6 @@
             name="business_id"
             id="business_id"
             placeholder="Eg. Username_xyz"
-            required
           />
         </div>
         <div class="inputgrp">
@@ -469,16 +496,17 @@
             name="business_password"
             id="business_password"
             placeholder="Eg. PhoneNumber_xyz"
-            required
           />
         </div>
         <div class="btngrp">
           <button type="submit">Login</button>
           <!-- &nbsp; &nbsp; -->
         </div>
+        <form action="" method="POST" class="inputgrp2">
+          <input type="text" id="forgotBusinessPassword" name="forgotBusinessPassword" value="forgotBusinessPassword" style="display: none;">
+          Don't have an Account? <a  href="business_register">Sign Up</a> or <button id="forgotPassword" type="submit" >Forgot Password? </a>
+        </div>
         <div class="inputgrp2">
-          Don't have an Account? <a href="business_register">Sign Up</a>
-          <!-- Forgot Password? <a href="business_register">Sign Up</a> -->
         </div>
       </form>
     </div>

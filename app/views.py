@@ -99,7 +99,7 @@ def home(request):
     print(vendors)
     vendors_list = []
     for i in vendors:
-        if(i):
+        if (i):
             # obj = {
             #     "business_id" : i.business_id,
             #     "business_name" : i.business_name
@@ -107,7 +107,16 @@ def home(request):
             # vendors_list.append(obj)
             vendors_list.append(i)
     vendors_list = list(set(vendors_list))
-    
+
+    # Getting few list items for home page
+    if len(superCategoriesDictList) > 15:
+        superCategoriesDictList = superCategoriesDictList[:15]
+    if len(brandsDictList) > 15:
+        brandsDictList = brandsDictList[:15]
+    if len(seasons) > 15:
+        seasons = seasons[:15]
+    if len(vendors_list) > 15:
+        vendors_list = vendors_list[:15]
 
     context = {
         "superCategoriesDictList": superCategoriesDictList,
@@ -213,6 +222,7 @@ def home(request):
 #     }
 
 #     return render(request, 'shop.html', context=context)
+
 
 @ login_required(login_url='login')
 def shop(request):
@@ -373,38 +383,49 @@ def shop(request):
             print(searchQuery)
 
             objects = Database.objects.filter(name=searchQuery)
-            if(objects):
+            if (objects):
                 for i in objects:
                     products.append(i)
             objects = Database.objects.filter(gender=searchQuery)
-            if(objects):
+            if (objects):
                 for i in objects:
                     products.append(i)
             objects = Database.objects.filter(description=searchQuery)
-            if(objects):
+            if (objects):
                 for i in objects:
                     products.append(i)
             objects = Database.objects.filter(superCategory=searchQuery)
-            if(objects):
+            if (objects):
                 for i in objects:
                     products.append(i)
             objects = Database.objects.filter(brandName=searchQuery)
-            if(objects):
+            if (objects):
                 for i in objects:
                     products.append(i)
             objects = Database.objects.filter(season=searchQuery)
-            if(objects):
+            if (objects):
                 for i in objects:
                     products.append(i)
             objects = Database.objects.filter(color=searchQuery)
-            if(objects):
+            if (objects):
                 for i in objects:
                     products.append(i)
-            
+
+            print("Len : ")
+            print(len(products))
+
+            # random.shuffle(products)
+
+            productNotFoundMsg = False
+
+            if (len(products) == 0):
+                productNotFoundMsg = True
+
             # print(products)
             context = {
-                    'products': list(set(products)),
-                }
+                'products': list(set(products)),
+                'productNotFoundMsg': productNotFoundMsg,
+            }
             return render(request, 'shop.html', context=context)
 
     # # # # # # # # # # # # # # # # # # # # RENDER WORK
@@ -412,11 +433,20 @@ def shop(request):
     for i in range(len(objects)):
         products.append(objects[i])
 
+    print("Len : ")
+    print(len(products))
+
     # random.shuffle(products)
+
+    productNotFoundMsg = False
+
+    if (len(products) == 0):
+        productNotFoundMsg = True
 
     context = {
         'products': products,
-        'wishlist': wishlist
+        'wishlist': wishlist,
+        'productNotFoundMsg': productNotFoundMsg
     }
 
     return render(request, 'shop.html', context=context)
@@ -780,11 +810,8 @@ def categories(request):
     superCategoriesDictList = []
     for i in superCategories:
         obj = Database.objects.filter(superCategory=i)
-        # print(obj[0].imageName)
         superCategoriesDictList.append(
             {"name": i, "imageName": obj[0].imageName})
-
-    # print(superCategoriesDictList)
 
     brands = set()
     for i in products:
@@ -798,9 +825,6 @@ def categories(request):
         obj = Database.objects.filter(brandName=i)
         brandsDictList.append(
             {"brandName": i, "brandImageName": obj[0].imageName})
-        # print(i)
-
-    # print(brandsDictList)
 
     seasons = set()
     for i in products:
@@ -808,33 +832,83 @@ def categories(request):
 
     seasons = list(seasons)
     seasons.sort()
-    # print(seasons)
-    # seasonsDictList = []
 
-    # for i in seasons:
-    #     obj = Database.objects.filter(season=i)
-    #     seasonsDictList.append(
-    #         {"seasonName": i, })
-    #     print(i)
+    vendors = Vendors.objects.all()
+    print(vendors)
+    vendors_list = []
+    for i in vendors:
+        if (i):
+            vendors_list.append(i)
+    vendors_list = list(set(vendors_list))
 
-    # print(seasonsDictList)
+    mainCategories_visibility = True
+    superCategories_visibility = True
+    brands_visibility = True
+    seasons_visibility = True
+    business_visibility = True
+
+    if request.method == "POST":
+        exploreCategories = request.POST.get('exploreCategories')
+
+        mainCategories_visibility = False
+        superCategories_visibility = False
+        brands_visibility = False
+        seasons_visibility = False
+        business_visibility = False
+
+        if (exploreCategories == "superCategories"):
+            superCategories_visibility = True
+        elif (exploreCategories == "brands"):
+            brands_visibility = True
+        elif (exploreCategories == "seasons"):
+            seasons_visibility = True
+        elif (exploreCategories == "business"):
+            business_visibility = True
+        # else:
+        #     mainCategories_visibility = True
+        #     superCategories_visibility = True
+        #     brands_visibility = True
+        #     seasons_visibility = True
+        #     business_visibility = True
+
+        # context = {
+        #     "superCategoriesDictList": superCategoriesDictList,
+        #     "brandsDictList": brandsDictList,
+        #     "seasons": seasons,
+        #     "vendors_list": vendors_list,
+
+        #     "mainCategories_visibility": mainCategories_visibility,
+        #     "superCategories_visibility": superCategories_visibility,
+        #     "brands_visibility": brands_visibility,
+        #     "seasons_visibility": seasons_visibility,
+        #     "business_visibility": business_visibility,
+
+        # }
+        # return render(request, "categories.html", context=context)
 
     context = {
         "superCategoriesDictList": superCategoriesDictList,
         "brandsDictList": brandsDictList,
         "seasons": seasons,
+        "vendors_list": vendors_list,
+
+
+        "mainCategories_visibility": mainCategories_visibility,
+        "superCategories_visibility": superCategories_visibility,
+        "brands_visibility": brands_visibility,
+        "seasons_visibility": seasons_visibility,
+        "business_visibility": business_visibility,
     }
     return render(request, "categories.html", context=context)
 
 
-
 def profile(request):
-    
+
     my_obj = UserSpace.objects.filter(user_id=request.user)
     wishlist_len = 0
     cart_len = 0
 
-    if(my_obj):
+    if (my_obj):
         jsonDec = json.decoder.JSONDecoder()
         wishlist_len = len(jsonDec.decode(my_obj[0].wishlist))
         cart_len = len(jsonDec.decode(my_obj[0].cart))
@@ -843,12 +917,12 @@ def profile(request):
     print(cart_len)
 
     me = User.objects.filter(username=request.user)
-    if(me):
+    if (me):
         me = me[0]
 
-    context={"me":me,
-             "wishlist_len": wishlist_len, 
-             "cart_len": cart_len}
+    context = {"me": me,
+               "wishlist_len": wishlist_len,
+               "cart_len": cart_len}
 
     return render(request, "profile.html", context=context)
 
@@ -877,6 +951,7 @@ def loginpage(request):
         context = {}
         return render(request, 'login.html')
 
+
 def logoutUser(request):
     logout(request)
     return redirect('login')
@@ -904,32 +979,80 @@ def registerpage(request):
 # ##############################
 
 
-
-
-
-
-
-
 def business_login(request):
 
-    if request.method == "POST":        
+    if request.method == "POST":
+
         business_id = request.POST.get('business_id')
         business_password = request.POST.get('business_password')
 
-        if(Vendors.objects.filter(business_id=business_id, business_password=business_password)):
-            # return render(request, "seller.html")
-            return redirect("/seller")
+        if (business_id and business_password):
 
-    return render(request, "business_login.html")
+            if (Vendors.objects.filter(business_id=business_id, business_password=business_password)):
+                # return render(request, "seller.html")
+                return redirect("/seller")
+            else:
+
+                businessIdNotFound = True
+                context = {
+                    'businessIdNotFound': businessIdNotFound,
+                }
+                return render(request, "business_login.html", context=context)
+
+        forgotBusinessPassword = request.POST.get('forgotBusinessPassword')
+
+        if (forgotBusinessPassword):
+            user = request.user
+            print(user)
+
+            email = user.email
+            print(email)
+
+            vendor = Vendors.objects.filter(primary_email=email)
+
+            business_id = vendor[0].business_id
+            business_password = vendor[0].business_password
+
+            message = "\nYour registered Business Id and Business password for " + email + " is" + "\nBusiness Id : " + business_id + \
+                "\nBusiness Password : " + business_password
+
+            s = smtplib.SMTP('smtp.gmail.com', 587)
+            s.starttls()
+
+            s.login("tribethreadsofficial@gmail.com", "qumifibzdhcgvzyb")
+
+            s.sendmail("tribethreadsofficial@gmail.com",
+                       str(email), str(message))
+            print("mail sent!")
+
+            s.quit()
+
+            mailSent = True
+            businessIdNotFound = False
+            context = {
+                'businessIdNotFound': businessIdNotFound,
+                'mailSent': mailSent
+            }
+            return render(request, 'business_login.html', context=context)
+
+    businessIdNotFound = False
+    mailSent = False
+    context = {
+        'businessIdNotFound': businessIdNotFound,
+        'mailSent': mailSent
+    }
+    return render(request, "business_login.html", context=context)
+
 
 def business_logout(request):
 
     return render(request, "business_login.html")
 
+
 def business_register(request):
 
     if request.method == "POST":
-        
+
         username = request.POST.get('username')
         business_name = request.POST.get('business_name')
         first_name = request.POST.get('first_name')
@@ -938,8 +1061,7 @@ def business_register(request):
         secondary_email = request.POST.get('secondary_email')
         phone_number = request.POST.get('phone_number')
         # password = request.POST.get('password')
-        
-        
+
         state = request.POST.get('state')
         district = request.POST.get('district')
         city = request.POST.get('city')
@@ -947,10 +1069,9 @@ def business_register(request):
         address = request.POST.get('address')
         business_phone_number = request.POST.get('business_phone_number')
 
-
         business_id = str(username) + "_" + str(random.randint(100000, 999999))
-        business_password = str(business_phone_number) + "_" + str(random.randint(100000, 999999))
-
+        business_password = str(business_phone_number) + \
+            "_" + str(random.randint(100000, 999999))
 
         vendor = Vendors(
             username=username,
@@ -973,28 +1094,54 @@ def business_register(request):
         )
         vendor.save()
 
-
-
         # message = "hello world"
         # message = f"Business Id : {str(username)} and Business Password : {str(password)}"
-        message = "\nBusiness Id : " + str(business_id) + "\nBusiness Password : "  + str(business_password)
+        message = "\nBusiness Id : " + \
+            str(business_id) + "\nBusiness Password : " + str(business_password)
 
         s = smtplib.SMTP('smtp.gmail.com', 587)
         s.starttls()
-        
+
         s.login("tribethreadsofficial@gmail.com", "qumifibzdhcgvzyb")
 
-        s.sendmail("tribethreadsofficial@gmail.com", str(primary_email), str(message))
-        s.sendmail("tribethreadsofficial@gmail.com", str(secondary_email), str(message))
+        s.sendmail("tribethreadsofficial@gmail.com",
+                   str(primary_email), str(message))
+        s.sendmail("tribethreadsofficial@gmail.com",
+                   str(secondary_email), str(message))
         print("mail sent!")
-        
+
         s.quit()
 
-
         return redirect("business_login")
-    
 
     return render(request, "business_register.html")
+
+
+
+
+def business_profile(request):
+
+    my_obj = UserSpace.objects.filter(user_id=request.user)
+    wishlist_len = 0
+    cart_len = 0
+
+    if (my_obj):
+        jsonDec = json.decoder.JSONDecoder()
+        wishlist_len = len(jsonDec.decode(my_obj[0].wishlist))
+        cart_len = len(jsonDec.decode(my_obj[0].cart))
+
+    print(wishlist_len)
+    print(cart_len)
+
+    me = User.objects.filter(username=request.user)
+    if (me):
+        me = me[0]
+
+    context = {"me": me,
+               "wishlist_len": wishlist_len,
+               "cart_len": cart_len}
+
+    return render(request, "business_profile.html", context=context)
 
 
 
@@ -1027,55 +1174,50 @@ def seller(request):
         if (image):
             imageName = image.name
 
-        product_id = brandName + "_" + color + "_" + name + "_" + str(random.rand())
+        product_id = brandName + "_" + color + \
+            "_" + name + "_" + str(random.rand())
 
-        database = Database.objects.create(name=name,
-                                           gender=gender,
-                                           price=price,
-                                           description=description,
-                                           superCategory=superCategory,
-                                           subCategories=subCategories,
-                                           color=color,
-                                           brandName=brandName,
-                                           availableSize=availableSize,
-                                           age=age,
-                                           season=season,
-                                           image=image,
-                                           imageName=imageName,
-                                           product_id=product_id
-                                           )
-        database.save()
+        if (Vendors.objects.filter(business_id=business_id)):
 
-        vendor_item = VendorItems(business_id=business_id, product_id=product_id)
-        vendor_item.save()
+            database = Database.objects.create(name=name,
+                                               gender=gender,
+                                               price=price,
+                                               description=description,
+                                               superCategory=superCategory,
+                                               subCategories=subCategories,
+                                               color=color,
+                                               brandName=brandName,
+                                               availableSize=availableSize,
+                                               age=age,
+                                               season=season,
+                                               image=image,
+                                               imageName=imageName,
+                                               product_id=product_id
+                                               )
+            database.save()
 
-        # vendor_items = VendorItems.objects.filter(business_id=business_id)
-        # if(vendor_items):
-        #     jsonDec = json.decoder.JSONDecoder()
+            vendor_item = VendorItems(
+                business_id=business_id, product_id=product_id)
+            vendor_item.save()
 
-        #     items = vendor_items[0].items
-        #     items = jsonDec.decode(items)
-        #     items.append(product_id)
-        #     items = json.dumps(items)
+            haveMsg = True
+            msg = "Product Contributed Successfully!"
 
-        #     print(" INSIDE ")
+            context = {
+                'haveMsg': haveMsg,
+                'msg': msg
+            }
+            return render(request, "seller.html", context=context)
 
-        #     vendor_items.delete()
+        else:
 
-        #     vendor_items2 = VendorItems(business_id=business_id, items=items)
-        #     vendor_items2.save()
-        # else:
-        #     items = [product_id]
-        #     items = json.dumps(items)
-        #     vendor_items = VendorItems(business_id=business_id, items=items)
-        #     vendor_items.save()
+            haveMsg = True
+            msg = "Business Id is Invalid so Product cannot be contributed."
 
-        
-        # jsonDec = json.decoder.JSONDecoder()
-        # cart = jsonDec.decode(cart)
-        # cart = json.dumps(cart)
-
-        return render(request, 'seller.html')
+            context = {
+                'haveMsg': haveMsg,
+                'msg': msg
+            }
+            return render(request, "seller.html", context=context)
 
     return render(request, 'seller.html')
-

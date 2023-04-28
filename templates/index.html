@@ -126,7 +126,7 @@
         width: 30%;
       }
       body .navbar .sec1 .collection {
-        width: 60%;
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -484,9 +484,19 @@
         height: 70%;
         background: transparent;
         border: none;
+        cursor: pointer;
       }
       .exploreMore button img {
         height: 100%;
+      }
+      .exploreMore button img:hover {
+        transform: rotate(359deg);
+        transition: all;
+        transition-duration: 0.5s;
+      }
+
+      button:focus {
+        outline: 0;
       }
 
       /*  */
@@ -856,6 +866,7 @@
             <a href="./home">Home</a>
             <a href="./shop">Shop</a>
             <!-- <a href="./categories">Categories</a> -->
+            <a href="./categories">Categories</a>
             <a href="./business_login">Business</a>
           </div>
         </div>
@@ -1100,7 +1111,7 @@
             id="exploreCategories"
             name="exploreCategories"
           />
-          <button type="submit">
+          <button id="exploreCategoriesBtn" type="submit">
             <img src="{% static 'images/next-arrow.png' %}" alt="Next" />
           </button>
         </form>

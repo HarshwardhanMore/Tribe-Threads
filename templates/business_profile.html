@@ -173,7 +173,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
       }
       body .main .table .row {
         display: flex;
@@ -253,8 +253,27 @@
         font-size: 17px;
       }
       body .main .actions a:hover {
-        background: var(--col1);
+        /* background: var(--col1);
         color: var(--col3);
+
+        transition: all;
+        transition-duration: 0.2s; */
+      }
+      body .main .actions a:hover img {
+        transition: all;
+        transition-duration: 0.3s;
+        transform: rotate(90deg);
+      }
+      body .main .actions a img {
+        height: 60%;
+      }
+      body .main .actions .secondaryBtn {
+        background: transparent;
+        color: var(--col3);
+      }
+      body .main .actions .secondaryBtn:hover {
+        background: var(--col3);
+        color: var(--col1);
 
         transition: all;
         transition-duration: 0.2s;
@@ -316,7 +335,7 @@
     </div>
 
     <div class="main">
-      <div class="heading">Profile</div>
+      <div class="heading">Business Profile</div>
       <div class="table">
         <div class="row">
           <div class="col1">Username</div>
@@ -331,32 +350,85 @@
           <div class="col2">{{me.last_name}}</div>
         </div>
         <div class="row">
-          <div class="col1">Signup Date</div>
-          <div class="col2"></div>
+          <div class="col1">Business name</div>
+          <div class="col2"><b>{{me.business_name}}</b></div>
         </div>
         <div class="row">
-          <div class="col1">Past Orders</div>
+          <div class="col1">Primary Email Address</div>
+          <div class="col2">{{me.primary_email}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Secondary Email Address</div>
+          <div class="col2">{{me.secondary_email}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Phone Number</div>
+          <div class="col2">{{me.phone_number}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">State</div>
+          <div class="col2">{{me.state}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">District</div>
+          <div class="col2">{{me.district}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">City</div>
+          <div class="col2">{{me.city}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Pinecode</div>
+          <div class="col2">{{me.pincode}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Address</div>
+          <div class="col2">{{me.address}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Business phone number</div>
+          <div class="col2">{{me.business_phone_number}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Business id</div>
+          <div class="col2">{{me.business_id}}</div>
+        </div>
+        <div class="row">
+          <div class="col1">Products Contributed</div>
+          <div class="col2">0 &nbsp;&nbsp;<a href="shop">View</a></div>
+        </div>
+        <div class="row">
+          <div class="col1">Products Sold</div>
           <div class="col2">0</div>
         </div>
         <div class="row">
-          <div class="col1">Total Purchase History</div>
+          <div class="col1">Products Sold Worth</div>
           <div class="col2">₹ 0</div>
         </div>
-        <div class="row">
-          <div class="col1">Total items in Wishlist</div>
+        <!-- <div class="row">
+          <div class="col1">Total items on website</div>
           <div class="col2">
             {{wishlist_len}} &nbsp;&nbsp;<a href="wishlist">View</a>
           </div>
-        </div>
-        <div class="row">
+        </div> -->
+        <!-- <div class="row">
           <div class="col1">Total items in Cart</div>
           <div class="col2">
             {{cart_len}} &nbsp;&nbsp;<a href="cart">View</a>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="actions">
-        <a href="logout" onclick="confirm('are you sure to logout?')">Logout</a>
+        <a href="seller"
+          >Contribute <img src="{% static 'images/add.png' %}" alt="" />
+        </a>
+        &nbsp;
+        <a
+          class="secondaryBtn"
+          href="logout"
+          onclick="confirm('are you sure to logout?')"
+          >Delete Business Channel</a
+        >
       </div>
     </div>
 

@@ -990,7 +990,7 @@ def business_login(request):
 
             if (Vendors.objects.filter(business_id=business_id, business_password=business_password)):
                 # return render(request, "seller.html")
-                return redirect("/seller")
+                return redirect("/business_profile")
             else:
 
                 businessIdNotFound = True
@@ -1117,33 +1117,41 @@ def business_register(request):
     return render(request, "business_register.html")
 
 
-
-
 def business_profile(request):
 
-    my_obj = UserSpace.objects.filter(user_id=request.user)
-    wishlist_len = 0
-    cart_len = 0
+    # user = request.user
 
-    if (my_obj):
-        jsonDec = json.decoder.JSONDecoder()
-        wishlist_len = len(jsonDec.decode(my_obj[0].wishlist))
-        cart_len = len(jsonDec.decode(my_obj[0].cart))
+    # me = Vendors.objects.filter(username=user.username)
+    # print(me)
 
-    print(wishlist_len)
-    print(cart_len)
+    # my_obj = UserSpace.objects.filter(user_id=request.user)
+    # wishlist_len = 0
+    # cart_len = 0
 
-    me = User.objects.filter(username=request.user)
-    if (me):
-        me = me[0]
+    # if (my_obj):
+    #     jsonDec = json.decoder.JSONDecoder()
+    #     wishlist_len = len(jsonDec.decode(my_obj[0].wishlist))
+    #     cart_len = len(jsonDec.decode(my_obj[0].cart))
 
-    context = {"me": me,
-               "wishlist_len": wishlist_len,
-               "cart_len": cart_len}
+    # print(wishlist_len)
+    # print(cart_len)
 
+    print(request.user)
+    print(request.user.username)
+
+    me = Vendors.objects.filter(username=request.user.username)
+
+    # if (me):
+    #     me = me[0]
+    # else:
+    #     return render(request, "business_profile.html")
+
+    me = me[0]
+
+    context = {
+        'me': me
+    }
     return render(request, "business_profile.html", context=context)
-
-
 
 
 @ login_required(login_url='login')

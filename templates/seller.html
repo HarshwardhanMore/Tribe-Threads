@@ -14,11 +14,7 @@
       rel="stylesheet"
     />
 
-    <link
-      rel="shortcut icon"
-      href="{% static '/images/icon2.png' %}"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="../media/icon2.png" type="image/x-icon" />
 
     <link
       rel="stylesheet"
@@ -154,7 +150,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        height: 50%;
+        height: 60%;
       }
       body .navbar > * img {
         height: 80%;
@@ -382,9 +378,7 @@
         <div class="heading">Register Product</div>
 
         <form action="" method="post" enctype="multipart/form-data">
-          {% csrf_token %} 
-          
-          {% if haveMsg %}
+          {% csrf_token %} {% if haveMsg %}
           <p>{{msg}}</p>
           {% endif %}
 

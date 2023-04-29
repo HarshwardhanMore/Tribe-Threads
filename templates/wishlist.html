@@ -13,11 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="shortcut icon"
-      href="{% static '/images/icon2.png' %}"
-      type="image/x-icon"
-    />
+
+    <link rel="shortcut icon" href="../media/icon2.png" type="image/x-icon" />
 
     <link
       rel="stylesheet"
@@ -151,7 +148,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        height: 65%;
+        height: 60%;
       }
       body .navbar > * img {
         height: 80%;
@@ -356,7 +353,7 @@
                 name="remove"
                 value="{{i.product_id}}"
               />
-              <button type="submit">Remove</button>
+              <button class="removeBtn" type="submit">Remove</button>
             </form>
             <form action="cart" method="post">
               {% csrf_token %}
@@ -366,7 +363,7 @@
                 id="addToCart"
                 value="{{i.product_id}}"
               />
-              <button type="submit">Move To Cart</button>
+              <button class="moveToCartBtn" type="submit">Move To Cart</button>
             </form>
           </div>
         </div>
@@ -402,5 +399,12 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      document.querySelector("#removeBtn").addEventListener('click', ()=>{
+        
+      });
+    </script>
+
   </body>
 </html>

@@ -14,11 +14,7 @@
       rel="stylesheet"
     />
 
-    <link
-      rel="shortcut icon"
-      href="{% static '/images/icon2.png' %}"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="../media/icon2.png" type="image/x-icon" />
 
     <link
       rel="stylesheet"
@@ -155,7 +151,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        height: 70%;
+        height: 60%;
       }
       body .navbar > * img {
         height: 80%;
@@ -165,7 +161,186 @@
         width: 80%;
         margin-top: 7%;
       }
+
+      body .search {
+        width: 18%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 50%;
+        margin-right: 30px;
+        /* border: 1px dashed var(--col1); */
+        border-bottom: 1px dashed var(--col2);
+        /* background: red; */
+      }
+      body .search > input {
+        width: 85%;
+        background: transparent;
+        color: var(--col2);
+        padding-left: 10px;
+        border: 0px;
+        font-family: "Montserrat", sans-serif;
+      }
+      body .search > input::placeholder {
+        color: var(--col2);
+        font-family: "Montserrat", sans-serif;
+      }
+      body .search > input:focus {
+        outline: none;
+      }
+      body .search > button {
+        width: 15%;
+        border: 0px;
+        background: transparent;
+        color: var(--col2);
+        height: 100%;
+        font-weight: bold;
+        cursor: pointer;
+        /* border-left: 1px dashed var(--col1); */
+      }
+      body .search > button:hover img {
+        transform: rotate(365deg);
+        transition: all;
+        transition-duration: 0.4s;
+      }
+      body .main #slideDownBtn {
+        width: 81%;
+        height: 7%;
+        /* padding: 0px 10px; */
+
+        position: fixed;
+        top: 10%;
+        left: 10%;
+        z-index: 100;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        background: var(--col1);
+      }
+
+      body .main #slideDownBtn #slideDownBtnContent {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        border: 1px solid var(--col2);
+        height: fit-content;
+        padding: 5px 10px;
+        border-radius: 100px;
+      }
+      body .main #slideDownBtn img {
+        height: 25px;
+      }
+
+      body .main #slideDownBtn .clearFilter {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        border: 1px solid var(--col2);
+        height: fit-content;
+        padding: 5px 10px;
+        border-radius: 100px;
+        text-decoration: none;
+        color: var(--col4);
+      }
+      body .main .clearFilter img {
+        height: 23px;
+      }
+
       body .main .filter {
+        position: fixed;
+        top: 17%;
+        left: 0%;
+        width: 100%;
+        height: 1%;
+        background: var(--col1);
+
+        transition: all;
+        transition-duration: 0.5s;
+
+        display: flex;
+        justify-content: center;
+      }
+      body .main .filter .content {
+        width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+      }
+      /* body .main .filter .content #slideDownBtn {
+        width: fit-content;
+        padding: 0px 10px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        cursor: pointer;
+      }
+      body .main .filter .content #slideDownBtn img {
+        height: 40%;
+      } */
+      body .main .filter .content .sections {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        height: 100%;
+        width: 100%;
+        padding-top: 1%;
+      }
+      body .main .filter .content .sections .inner {
+        height: fit-content;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 20%;
+        column-gap: 5%;
+      }
+      body .main .filter .content .sections .inner > * {
+        width: 100%;
+      }
+      body .main .filter .content .sections .inner .inputGrp .title {
+        font-size: 20px;
+        margin-bottom: 1%;
+      }
+      body .main .filter .content .sections .inner .inputGrp select {
+        width: 100%;
+        padding: 15px;
+        background: transparent;
+        border-radius: 10px;
+      }
+      body .main .filter .content .sections .inner .inputGrp select * {
+        padding: 15px;
+        background: var(--col1);
+      }
+      body .main .filter .content .sections #apply {
+        padding: 7px 15px;
+        background: var(--col3);
+        color: var(--col1);
+        border: 2px solid var(--col3);
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      body .main .filter .content .sections #reset {
+        padding: 7px 15px;
+        background: transparent;
+        color: var(--col3);
+        border: 2px solid var(--col3);
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      select:focus,
+      button:focus {
+        outline: none;
+      }
+      /* body .main .filter {
         position: fixed;
         top: 10%;
         left: 0%;
@@ -188,8 +363,6 @@
         align-items: flex-end;
       }
       body .main .filter .content #slideDownBtn {
-        /* height: 100%; */
-        /* width: 100%; */
         width: fit-content;
         padding: 0px 10px;
 
@@ -231,7 +404,6 @@
         border-radius: 10px;
       }
       body .main .filter .content .sections .inner .inputGrp select * {
-        /* width: 100%; */
         padding: 15px;
         background: var(--col1);
       }
@@ -255,7 +427,7 @@
       }
       button:focus {
         outline: none;
-      }
+      } */
       /* body .main .filter .content .sections #apply:hover {
         color: var(--col3);
         background: var(--col1);
@@ -418,12 +590,42 @@
 
     <div class="main">
       <br />
+
+      <div id="slideDownBtn">
+        <form action="shop" method="post" class="search">
+          {% csrf_token %}
+          <input
+            name="searchQuery"
+            id="searchQuery"
+            type="text"
+            placeholder="Search Here!"
+            required
+          />
+          <button type="submit">
+            <img src="{% static 'images/search-brown.png' %}" />
+          </button>
+        </form>
+        <div id="slideDownBtnContent">
+          <img src="{% static 'images/filter.png' %}" alt="" /> &nbsp;
+          <div class="title">Filter</div>
+        </div>
+        &nbsp;&nbsp;
+        <a class="clearFilter" href="shop">
+          <img src="{% static 'images/clearFilter.png' %}" alt="" /> &nbsp;
+          <div class="title">Clear</div>
+        </a>
+        &nbsp;&nbsp;
+        <!-- <div id="clearFilter" href="shop">
+          <img src="{% static 'images/filter.png' %}" alt="" /> &nbsp;
+          <div class="title">Clear Filter</div>
+        </div> -->
+      </div>
       <div class="filter" id="filter">
         <div class="content">
-          <div id="slideDownBtn">
+          <!-- <div id="slideDownBtn">
             <img src="{% static 'images/filter.png' %}" alt="" /> &nbsp;
             <div class="title">Filter</div>
-          </div>
+          </div> -->
           <form action="" method="POST" class="sections" id="sections">
             {% csrf_token %}
             <div class="inner">
@@ -431,7 +633,7 @@
               <div class="inputGrp">
                 <div class="title">{{i.key}}</div>
                 <select name="{{i.key}}" id="{{i.key}}">
-                  <option value="None" selected disabled>Select</option>
+                  <option value="None" selected>Select</option>
                   {% for j in i.values %}
                   <option value="{{j}}">{{j}}</option>
                   {% endfor %}
@@ -486,7 +688,7 @@
               </button>
             </form>
 
-            <form action="" method="post" id="items_to_wishlist_cart">
+            <form action="wishlist" method="post" id="items_to_wishlist_cart">
               {% csrf_token %}
               <!-- <div class="quantity"> -->
               <input
@@ -629,23 +831,25 @@
         setCartSize();
       }
 
-      document.getElementById("filter").style.height = "7%";
+      document.getElementById("filter").style.height = "0%";
       document.getElementById("sections").style.display = "none";
       document.getElementById("sections").style.height = "0%";
-      document.getElementById("slideDownBtn").style.height = "100%";
-      document.getElementById("slideDownBtn").addEventListener("click", () => {
-        if (document.getElementById("filter").style.height != "7%") {
-          document.getElementById("filter").style.height = "7%";
-          document.getElementById("sections").style.display = "none";
-          document.getElementById("sections").style.height = "0%";
-          document.getElementById("slideDownBtn").style.height = "100%";
-        } else {
-          document.getElementById("filter").style.height = "90vh";
-          document.getElementById("sections").style.display = "flex";
-          document.getElementById("sections").style.height = "93%";
-          document.getElementById("slideDownBtn").style.height = "7%";
-        }
-      });
+      document.getElementById("slideDownBtn").style.height = "7%";
+      document
+        .getElementById("slideDownBtnContent")
+        .addEventListener("click", () => {
+          if (document.getElementById("filter").style.height != "0%") {
+            document.getElementById("filter").style.height = "0%";
+            document.getElementById("sections").style.display = "none";
+            document.getElementById("sections").style.height = "0%";
+            document.getElementById("slideDownBtn").style.height = "7%";
+          } else {
+            document.getElementById("filter").style.height = "83vh";
+            document.getElementById("sections").style.display = "flex";
+            document.getElementById("sections").style.height = "100%";
+            document.getElementById("slideDownBtn").style.height = "7%";
+          }
+        });
     </script>
   </body>
 </html>

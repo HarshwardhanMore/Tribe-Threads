@@ -207,6 +207,11 @@
         font-weight: bold;
         /* border-left: 1px dashed var(--col1); */
       }
+      body .navbar .sec3 .search > button:hover img {
+        transition: all;
+        transition-duration: 0.4s;
+        transform: rotate(365deg);
+      }
       body .navbar .sec3 .collection {
         width: 35%;
         display: flex;
@@ -855,6 +860,9 @@
         background: #04aa6d;
         width: 0%;
       }
+      button {
+        cursor: pointer;
+      }
       /*  */
     </style>
   </head>
@@ -892,6 +900,7 @@
               id="searchQuery"
               type="text"
               placeholder="Search Here!"
+              required
             />
             <button type="submit">
               <img

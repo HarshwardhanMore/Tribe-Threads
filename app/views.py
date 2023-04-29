@@ -359,16 +359,16 @@ def shop(request):
 
     # # # # # # # # # # # # # # # # # # # # FILTER WORK ( shops )
 
-    if (request.method == 'POST'):
-        business_id = request.POST.get("business_id")
-        if (business_id):
-            objects = VendorItems.objects.filter(business_id=business_id)
-            print("objects : ")
-            print(objects)
-            items = []
-            for i in objects:
-                print("i : ")
-                print(i)
+    # if (request.method == 'POST'):
+    #     business_id = request.POST.get("business_id")
+    #     if (business_id):
+    #         objects = VendorItems.objects.filter(business_id=business_id)
+    #         # print("objects : ")
+    #         # print(objects)
+    #         items = []
+    #         # for i in objects:
+    #         #     print("i : ")
+    #         #     print(i)
 
     # # # # # # # # # # # # # # # # # # # # SEACH WORK ( any )
 
@@ -382,31 +382,33 @@ def shop(request):
             searchQuery = searchQuery.replace('_', '-')
             print(searchQuery)
 
-            objects = Database.objects.filter(name=searchQuery)
+            objects = Database.objects.filter(name__contains=searchQuery)
             if (objects):
                 for i in objects:
                     products.append(i)
-            objects = Database.objects.filter(gender=searchQuery)
+            objects = Database.objects.filter(gender__contains=searchQuery)
             if (objects):
                 for i in objects:
                     products.append(i)
-            objects = Database.objects.filter(description=searchQuery)
+            objects = Database.objects.filter(
+                description__contains=searchQuery)
             if (objects):
                 for i in objects:
                     products.append(i)
-            objects = Database.objects.filter(superCategory=searchQuery)
+            objects = Database.objects.filter(
+                superCategory__contains=searchQuery)
             if (objects):
                 for i in objects:
                     products.append(i)
-            objects = Database.objects.filter(brandName=searchQuery)
+            objects = Database.objects.filter(brandName__contains=searchQuery)
             if (objects):
                 for i in objects:
                     products.append(i)
-            objects = Database.objects.filter(season=searchQuery)
+            objects = Database.objects.filter(season__contains=searchQuery)
             if (objects):
                 for i in objects:
                     products.append(i)
-            objects = Database.objects.filter(color=searchQuery)
+            objects = Database.objects.filter(color__contains=searchQuery)
             if (objects):
                 for i in objects:
                     products.append(i)
@@ -433,8 +435,8 @@ def shop(request):
     for i in range(len(objects)):
         products.append(objects[i])
 
-    print("Len : ")
-    print(len(products))
+    # print("Len : ")
+    # print(len(products))
 
     # random.shuffle(products)
 
@@ -462,8 +464,84 @@ def shop(request):
         ages.add(i.age)
         seasons.add(i.season)
 
-    print("genders")
-    print(genders)
+    genders = list(genders)
+    superCategories = list(superCategories)
+    colors = list(colors)
+    brands = list(brands)
+    sizes = list(sizes)
+    ages = list(ages)
+    seasons = list(seasons)
+
+    genders.sort()
+    superCategories.sort()
+    colors.sort()
+    brands.sort()
+    sizes.sort()
+    ages.sort()
+    seasons.sort()
+
+    # print("genders")
+    # print(genders)
+
+    if (request.method == 'POST'):
+        Gender = request.POST.get('Gender')
+        Categories = request.POST.get('Categories')
+        Colors = request.POST.get('Colors')
+        Brands = request.POST.get('Brands')
+        Sizes = request.POST.get('Sizes')
+        Age_Groups = request.POST.get('Age-Groups')
+        Season = request.POST.get('Season')
+
+        print("Gender : ")
+        print(Gender)
+        print("Categories : ")
+        print(Categories)
+
+        if (Gender != 'None'):
+            products = Database.objects.filter(gender=Gender)
+        if (Categories != 'None'):
+            products = products.filter(superCategory=Categories)
+        if (Colors != 'None'):
+            products = products.filter(color=Colors)
+        if (Brands != 'None'):
+            products = products.filter(brandName=Brands)
+        if (Sizes != 'None'):
+            products = products.filter(availableSize=Sizes)
+        if (Age_Groups != 'None'):
+            products = products.filter(age=Age_Groups)
+        if (Season != 'None'):
+            products = products.filter(season=Season)
+
+        print(products)
+
+        if (len(products) == 0):
+            productNotFoundMsg = True
+
+        # if (Gender != 'None'):
+        #     products1 = set(Database.objects.filter(gender=Gender))
+        # if (Categories != 'None'):
+        #     products2 = set(Database.objects.filter(superCategory=Categories))
+        # if (Colors != 'None'):
+        #     products3 = set(Database.objects.filter(color=Colors))
+        # if (Brands != 'None'):
+        #     products4 = set(Database.objects.filter(brandName=Brands))
+        # if (Sizes != 'None'):
+        #     products5 = set(Database.objects.filter(availableSize=Sizes))
+        # if (Age_Groups != 'None'):
+        #     products6 = set(Database.objects.filter(age=Age_Groups))
+        # if (Season != 'None'):
+        #     products7 = set(Database.objects.filter(season=Season))
+
+        # filtered_products = set()
+        # filtered_products = products1.intersection(
+        #     products2, products3, products4, products5, products6, products7)
+
+        # print(filtered_products)
+
+        # products = set(filtered_products)
+
+        # print(list[products1, products2])
+        # print(set(products1, products2))
 
     context = {
         'categories': [
@@ -488,7 +566,7 @@ def shop(request):
                 'values': list(sizes),
             },
             {
-                'key': 'Age Groups',
+                'key': 'Age-Groups',
                 'values': list(ages),
             },
             {
@@ -529,6 +607,78 @@ def wishlist(request):
     wishlist = '[]'
     product_id_remove = None
     product_id_addToCart = None
+
+    # Wishlist
+
+    if (request.method == 'POST'):
+
+        product_id = request.POST.get("product_id")
+        # quantity = request.POST.get("quantity")
+
+        product = Database.objects.filter(product_id=product_id)
+        if product:
+            product = product[0]
+
+        # item = {"product_id": str(product_id), "quantity": int(quantity)}
+
+        obj = UserSpace.objects.filter(user_id=user_id)
+
+        # cart = ''
+
+        if (obj):
+            user_id = obj[0].user_id
+            wishlist = obj[0].wishlist
+
+            cart = obj[0].cart
+
+            # From String to List
+            jsonDec = json.decoder.JSONDecoder()
+            wishlist = jsonDec.decode(wishlist)
+
+            # item = {"product_id": product_id, "image_name": product.imageName, "brand": product.brandName,
+            #         "name": product.name, "price": product.price, "color": product.color, "size": product.availableSize, "quantity": quantity}
+
+            item = product_id
+
+            if item not in wishlist:
+                wishlist.append(item)
+
+            # wishlist = list(set(wishlist))
+
+            # From List To String
+            wishlist = json.dumps(wishlist)
+
+            # print("DONE")
+
+        else:
+            user_id = user_id
+            # wishlist = obj[0].wishlist
+
+            # From String to List
+            # jsonDec = json.decoder.JSONDecoder()
+            # wishlist = jsonDec.decode(wishlist)
+
+            # item = {"product_id": product_id, "image_name": product.imageName, "brand": product.brandName,
+            #         "name": product.name, "price": product.price, "color": product.color, "size": product.availableSize, "quantity": quantity}
+
+            item = product_id
+
+            wishlist = [item]
+
+            # wishlist = list(set(wishlist))
+
+            # From List To String
+            wishlist = json.dumps(wishlist)
+            cart = json.dumps(cart)
+
+            # print("DONE")
+
+        obj.delete()
+        obj = UserSpace.objects.create(
+            user_id=user_id, wishlist=wishlist, cart=cart)
+        obj.save()
+
+        #########################################################
 
     if (request.method == 'POST'):
 
@@ -596,6 +746,35 @@ def wishlist(request):
             obj = UserSpace.objects.create(
                 user_id=user_id, wishlist=wishlist, cart=cart)
             obj.save()
+
+
+# # PRODUCT ID REMOVE FROM WISHLIST
+
+#             product_id = product_id_addToCart
+
+#             obj = UserSpace.objects.filter(user_id=user_id)
+#             user_id = obj[0].user_id
+#             wishlist = obj[0].wishlist
+#             cart = obj[0].cart
+
+#             jsonDec = json.decoder.JSONDecoder()
+#             wishlist = jsonDec.decode(wishlist)
+
+#             if product_id in wishlist:
+#                 wishlist.remove(product_id)
+
+#             # if len(wishlist) > 0:
+#             wishlist = json.dumps(wishlist)
+
+#             obj.delete()
+
+#             obj = UserSpace.objects.create(
+#                 user_id=user_id, wishlist=wishlist, cart=cart)
+#             obj.save()
+
+
+# #####################################################################
+
         if product_id_remove:
             product_id = product_id_remove
 
@@ -770,6 +949,32 @@ def cart(request):
             obj = UserSpace.objects.create(
                 user_id=user_id, wishlist=wishlist, cart=cart)
             obj.save()
+
+            # PRODUCT ID REMOVE FROM WISHLIST
+
+            product_id = addToCart
+
+            obj = UserSpace.objects.filter(user_id=user_id)
+            user_id = obj[0].user_id
+            wishlist = obj[0].wishlist
+            cart = obj[0].cart
+
+            jsonDec = json.decoder.JSONDecoder()
+            wishlist = jsonDec.decode(wishlist)
+
+            if product_id in wishlist:
+                wishlist.remove(product_id)
+
+            # if len(wishlist) > 0:
+            wishlist = json.dumps(wishlist)
+
+            obj.delete()
+
+            obj = UserSpace.objects.create(
+                user_id=user_id, wishlist=wishlist, cart=cart)
+            obj.save()
+
+            #####################################################################
 
         if product_id_remove:
             product_id = product_id_remove

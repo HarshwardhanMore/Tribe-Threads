@@ -163,8 +163,106 @@
       body .main {
         height: 90%;
         width: 80%;
-        margin-top: 5%;
+        margin-top: 7%;
       }
+      body .main .filter {
+        position: fixed;
+        top: 10%;
+        left: 0%;
+        width: 100%;
+        height: 7%;
+        background: var(--col1);
+
+        transition: all;
+        transition-duration: 0.5s;
+
+        display: flex;
+        justify-content: center;
+      }
+      body .main .filter .content {
+        width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+      }
+      body .main .filter .content #slideDownBtn {
+        /* height: 100%; */
+        /* width: 100%; */
+        width: fit-content;
+        padding: 0px 10px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        cursor: pointer;
+      }
+      body .main .filter .content #slideDownBtn img {
+        height: 40%;
+      }
+      body .main .filter .content .sections {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        height: 90%;
+        width: 100%;
+      }
+      body .main .filter .content .sections .inner {
+        height: fit-content;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 20%;
+        column-gap: 5%;
+      }
+      body .main .filter .content .sections .inner > * {
+        width: 100%;
+      }
+      body .main .filter .content .sections .inner .inputGrp .title {
+        font-size: 20px;
+        margin-bottom: 1%;
+      }
+      body .main .filter .content .sections .inner .inputGrp select {
+        width: 100%;
+        padding: 15px;
+        background: transparent;
+        border-radius: 10px;
+      }
+      body .main .filter .content .sections .inner .inputGrp select * {
+        /* width: 100%; */
+        padding: 15px;
+        background: var(--col1);
+      }
+      body .main .filter .content .sections #apply {
+        padding: 7px 15px;
+        background: var(--col3);
+        color: var(--col1);
+        border: 2px solid var(--col3);
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      body .main .filter .content .sections #reset {
+        padding: 7px 15px;
+        background: transparent;
+        color: var(--col3);
+        border: 2px solid var(--col3);
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button:focus {
+        outline: none;
+      }
+      /* body .main .filter .content .sections #apply:hover {
+        color: var(--col3);
+        background: var(--col1);
+        transition: all;
+        transition-duration: 0.3s;
+        cursor: pointer;
+      } */
       body .main > .mycards {
         width: 100%;
         display: grid;
@@ -259,80 +357,6 @@
       body .main > .mycards > .mycard .btns button img {
         width: 25px;
       }
-
-      /* .toastForWishlist {
-        position: fixed;
-        top: 0%;
-        left: 0%;
-        z-index: 1000;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.548);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .toastForWishlist .toast {
-        width: auto;
-        height: 15%;
-        background: var(--col1);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 7px;
-        overflow: hidden;
-      }
-      .toastForWishlist .toast .btns {
-        height: 30%;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: center;
-      }
-      .toastForWishlist .toast .btns .wishlist {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        color: var(--col4);
-        padding: 5px 0px;
-        color: var(--col1);
-        background: var(--col4);
-      }
-      .toastForWishlist .toast .btns .close {
-        width: 50%;
-        height: 100%;
-        background: rgb(247, 90, 90);
-        background: var(--col3);
-        color: var(--col1);
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 5px 0px;
-        cursor: pointer;
-      }
-      .toastForWishlist .toast .msg {
-        height: 70%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0px 20px;
-      } */
-
-      /* @media screen and (min-width: 800px) and (max-width: 1650px) {
-        body {
-          background: green;
-        }
-      } */
-
       button {
         font-family: "Montserrat", serif;
       }
@@ -393,7 +417,36 @@
     </div>
 
     <div class="main">
-      <br /><br />
+      <br />
+      <div class="filter" id="filter">
+        <div class="content">
+          <div id="slideDownBtn">
+            <img src="{% static 'images/filter.png' %}" alt="" /> &nbsp;
+            <div class="title">Filter</div>
+          </div>
+          <form action="" method="POST" class="sections" id="sections">
+            {% csrf_token %}
+            <div class="inner">
+              {% for i in categories %}
+              <div class="inputGrp">
+                <div class="title">{{i.key}}</div>
+                <select name="{{i.key}}" id="{{i.key}}">
+                  <option value="None" selected disabled>Select</option>
+                  {% for j in i.values %}
+                  <option value="{{j}}">{{j}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="btns">
+              <button id="apply" type="submit">Apply</button> &nbsp;
+              <button id="reset" type="reset">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br />
       {% if productNotFoundMsg %}
       <h2>The item you are looking for is not available.</h2>
       {% endif %}
@@ -575,6 +628,24 @@
         console.log(document.getElementById("price_" + i).innerHTML);
         setCartSize();
       }
+
+      document.getElementById("filter").style.height = "7%";
+      document.getElementById("sections").style.display = "none";
+      document.getElementById("sections").style.height = "0%";
+      document.getElementById("slideDownBtn").style.height = "100%";
+      document.getElementById("slideDownBtn").addEventListener("click", () => {
+        if (document.getElementById("filter").style.height != "7%") {
+          document.getElementById("filter").style.height = "7%";
+          document.getElementById("sections").style.display = "none";
+          document.getElementById("sections").style.height = "0%";
+          document.getElementById("slideDownBtn").style.height = "100%";
+        } else {
+          document.getElementById("filter").style.height = "90vh";
+          document.getElementById("sections").style.display = "flex";
+          document.getElementById("sections").style.height = "93%";
+          document.getElementById("slideDownBtn").style.height = "7%";
+        }
+      });
     </script>
   </body>
 </html>

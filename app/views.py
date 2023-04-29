@@ -443,11 +443,66 @@ def shop(request):
     if (len(products) == 0):
         productNotFoundMsg = True
 
+    #########################################################
+
+    products = Database.objects.all()
+    genders = set()
+    superCategories = set()
+    colors = set()
+    brands = set()
+    sizes = set()
+    ages = set()
+    seasons = set()
+    for i in products:
+        genders.add(i.gender)
+        superCategories.add(i.superCategory)
+        colors.add(i.color)
+        brands.add(i.brandName)
+        sizes.add(i.availableSize)
+        ages.add(i.age)
+        seasons.add(i.season)
+
+    print("genders")
+    print(genders)
+
     context = {
+        'categories': [
+            {
+                'key': 'Gender',
+                'values': list(genders),
+            },
+            {
+                'key': 'Categories',
+                'values': list(superCategories),
+            },
+            {
+                'key': 'Colors',
+                'values': list(colors),
+            },
+            {
+                'key': 'Brands',
+                'values': list(brands),
+            },
+            {
+                'key': 'Sizes',
+                'values': list(sizes),
+            },
+            {
+                'key': 'Age Groups',
+                'values': list(ages),
+            },
+            {
+                'key': 'Season',
+                'values': list(seasons),
+            },
+        ],
+
         'products': products,
         'wishlist': wishlist,
         'productNotFoundMsg': productNotFoundMsg
     }
+
+    #########################################################
 
     return render(request, 'shop.html', context=context)
 

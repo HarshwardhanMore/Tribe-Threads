@@ -1121,7 +1121,7 @@
             name="exploreCategories"
           />
           <button id="exploreCategoriesBtn" type="submit">
-            <img src="{% static 'images/next-arrow.png' %}" alt="Next" />
+            <img src="../media/icons/next-arrow.png" alt="Next" />
           </button>
         </form>
       </div>
@@ -1199,7 +1199,7 @@
         <div class="heading">Businesses</div>
         <div class="content">
           {% for i in vendors_list %}
-          <form class="business" action="shop" method="post">
+          <div class="business">
             {% csrf_token %}
             <div class="upper">
               <input type="text" name="business_id" value="{{i.business_id}}" />
@@ -1208,10 +1208,10 @@
                 {{i.business_name}}
               </button>
             </div>
-          </form>
+          </div>
           {% endfor %}
         </div>
-        <form method="POST" action="categories" class="exploreMore">
+        <!-- <form method="POST" action="categories" class="exploreMore">
           {% csrf_token %}
           <div class="title">Explore More</div>
           <input
@@ -1223,10 +1223,11 @@
           <button type="submit">
             <img src="{% static 'images/next-arrow.png' %}" alt="Next" />
           </button>
-        </form>
+        </form> -->
       </div>
 
       <!-- <div class="otherCategories"></div> -->
+      <br /><br /><br />
     </div>
 
     <!-- <div id="horizontal">

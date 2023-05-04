@@ -355,7 +355,6 @@ def shop(request):
         season = request.POST.get("season")
         if (season):
             objects = Database.objects.filter(season=season)
-            objects = Database.objects.filter(brandName=brandName)
 
     # # # # # # # # # # # # # # # # # # # # FILTER WORK ( shops )
 
@@ -434,20 +433,17 @@ def shop(request):
     products = []
     for i in range(len(objects)):
         products.append(objects[i])
-
-    # print("Len : ")
-    # print(len(products))
-
-    # random.shuffle(products)
+    print("products : ")
+    print(products)
 
     productNotFoundMsg = False
-
     if (len(products) == 0):
+        print("INSIDE :: ")
         productNotFoundMsg = True
 
     #########################################################
 
-    products = Database.objects.all()
+    temp_products = Database.objects.all()
     genders = set()
     superCategories = set()
     colors = set()
@@ -455,7 +451,7 @@ def shop(request):
     sizes = set()
     ages = set()
     seasons = set()
-    for i in products:
+    for i in temp_products:
         genders.add(i.gender)
         superCategories.add(i.superCategory)
         colors.add(i.color)
@@ -492,30 +488,32 @@ def shop(request):
         Age_Groups = request.POST.get('Age-Groups')
         Season = request.POST.get('Season')
 
-        print("Gender : ")
-        print(Gender)
-        print("Categories : ")
-        print(Categories)
+        # print("Gender : ")
+        # print(Gender)
+        # print("Categories : ")
+        # print(Categories)
 
-        if (Gender != 'None'):
-            products = Database.objects.filter(gender=Gender)
-        if (Categories != 'None'):
-            products = products.filter(superCategory=Categories)
-        if (Colors != 'None'):
-            products = products.filter(color=Colors)
-        if (Brands != 'None'):
-            products = products.filter(brandName=Brands)
-        if (Sizes != 'None'):
-            products = products.filter(availableSize=Sizes)
-        if (Age_Groups != 'None'):
-            products = products.filter(age=Age_Groups)
-        if (Season != 'None'):
-            products = products.filter(season=Season)
+        if Gender or Categories or Colors or Brands or Sizes or Age_Groups or Season:
 
-        print(products)
+            if (Gender != 'None'):
+                products = Database.objects.filter(gender=Gender)
+            if (Categories != 'None'):
+                products = products.filter(superCategory=Categories)
+            if (Colors != 'None'):
+                products = products.filter(color=Colors)
+            if (Brands != 'None'):
+                products = products.filter(brandName=Brands)
+            if (Sizes != 'None'):
+                products = products.filter(availableSize=Sizes)
+            if (Age_Groups != 'None'):
+                products = products.filter(age=Age_Groups)
+            if (Season != 'None'):
+                products = products.filter(season=Season)
 
-        if (len(products) == 0):
-            productNotFoundMsg = True
+            productNotFoundMsg = False
+            if (len(products) == 0):
+                print("INSIDE 2 :: ")
+                productNotFoundMsg = True
 
         # if (Gender != 'None'):
         #     products1 = set(Database.objects.filter(gender=Gender))
@@ -846,9 +844,16 @@ def wishlist(request):
     for i in range(len(objects)):
         products.append(objects[i])
 
+    wishlist_msg = "Your wishlist is empty."
+    wishlist_msg_show = False
+    if (len(new_wishlist) == 0):
+        wishlist_msg_show = True
+
     context = {
         'products': products,
-        'wishlist': new_wishlist
+        'wishlist': new_wishlist,
+        'wishlist_msg_show': wishlist_msg_show,
+        'wishlist_msg': wishlist_msg,
     }
 
     return render(request, "wishlist.html", context=context)
@@ -1048,11 +1053,18 @@ def cart(request):
     print(cart_products)
     print(total)
 
+    cart_msg = "Your Cart is empty."
+    cart_msg_show = False
+    if (len(cart_products) == 0):
+        cart_msg_show = True
+
     context = {
         'products': products,
         'cart': cart,
         'cart_products': cart_products,
-        'total': total
+        'total': total,
+        'cart_msg_show': cart_msg_show,
+        'cart_msg': cart_msg,
     }
 
     return render(request, "cart.html", context=context)
@@ -1174,7 +1186,9 @@ def profile(request):
         cart_len = len(jsonDec.decode(my_obj[0].cart))
 
     print(wishlist_len)
+    print(my_obj[0].wishlist)
     print(cart_len)
+    print(my_obj[0].cart)
 
     me = User.objects.filter(username=request.user)
     if (me):

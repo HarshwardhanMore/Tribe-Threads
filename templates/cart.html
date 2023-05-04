@@ -356,7 +356,9 @@
     <!-- <br /><br /> -->
     <div class="main">
       <div class="cards">
-        {% for i in cart_products %}
+        {% if cart_msg_show %}
+        <h2>{{cart_msg}}</h2>
+        {% endif %} {% for i in cart_products %}
         <div class="card">
           <div class="itemPic">
             <img

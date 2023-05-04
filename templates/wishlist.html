@@ -329,6 +329,9 @@
 
     <div class="main">
       <br /><br />
+      {% if wishlist_msg_show %}
+      <h2>{{wishlist_msg}}</h2>
+      {% endif %}
       <div class="mycards">
         {% for i in wishlist %}
         <div class="mycard">
@@ -401,10 +404,7 @@
     ></script>
 
     <script>
-      document.querySelector("#removeBtn").addEventListener('click', ()=>{
-        
-      });
+      document.querySelector("#removeBtn").addEventListener("click", () => {});
     </script>
-
   </body>
 </html>
